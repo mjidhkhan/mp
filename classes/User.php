@@ -31,13 +31,13 @@ class User extends Model
         return $this->result;
     }
 
-    public function LoginUser($data)
+    public function AdminLogin($data)
     {
         $email = htmlentities($data['email']);
         $password = htmlentities($data['password']);
         $hashed_password = sha1($password);
         if ($email && $password) {
-            $this->sql = $this->db->prepare('SELECT * FROM users WHERE email=:email
+            $this->sql = $this->db->prepare('SELECT * FROM users WHERE email=:email 
             AND hashed_password = :hashed_password');
             $this->sql->execute(array(':email' => $email, ':hashed_password' => $hashed_password));
             $count = $this->sql->rowCount();
@@ -59,7 +59,43 @@ class User extends Model
                 $message = 'Username/password combination incorrect.<br />
                             Please make sure your caps lock key is off and try again.';
                 Session::setFlash($message, 'danger');
-                //$this->result = '/pages/login.php';
+            }
+        } else {
+            $message = 'Please fill in all fields.';
+            Session::setFlash($message, 'danger');
+        }
+
+        return $this->result;
+    }
+
+    public function LoginUser($data)
+    {
+        $email = htmlentities($data['email']);
+        $password = htmlentities($data['password']);
+        $hashed_password = sha1($password);
+        if ($email && $password) {
+            $this->sql = $this->db->prepare('SELECT * FROM users WHERE email=:email 
+            AND hashed_password = :hashed_password');
+            $this->sql->execute(array(':email' => $email, ':hashed_password' => $hashed_password));
+            $count = $this->sql->rowCount();
+            if ($count > 0) { // data found
+                while ($row = $this->sql->fetch()) {
+                    Session::set('user', $row['id']);
+                    Session::set('status', $row['status']);
+                    Session::set('username', $row['username']);
+                    Session::set('fullname', $row['fullname']);
+                    if ($row['status'] == 1) { // member of staff admin redirect to admin area
+                        Session::set('admin', $row['email']);
+                        $this->result = 'pages/admin/index.php';
+                    } elseif ($row['status'] == 2) { // customer redirect to customer area
+                        Session::set('customer', $row['email']);
+                        $this->result = '/client/index.php';
+                    }
+                } // end while
+            } else { // data not found
+                $message = 'Username/password combination incorrect.<br />
+                            Please make sure your caps lock key is off and try again.';
+                Session::setFlash($message, 'danger');
             }
         } else {
             $message = 'Please fill in all fields.';

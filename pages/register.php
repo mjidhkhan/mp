@@ -14,5 +14,5 @@ if (isset($_POST['action'])) {
         }
     }
 } else {
-    echo $twig->render('mp-client/register.twig', array('page' => 'New Membership'));
+    echo $twig->render('mp-client/register.twig', array('page' => 'New Membership', 'login' => 'Login'));
 }

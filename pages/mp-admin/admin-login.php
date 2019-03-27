@@ -1,11 +1,11 @@
 <?php
 
-require_once dirname(__DIR__) . '../../pages/views.php';
+require_once dirname(__DIR__).'../../pages/views.php';
 $user = new User();
 
 if (isset($_POST['action'])) {
     if ($_POST['action'] === 'LOGIN') {
-        $user->LoginUser($_POST);
+        $user->AdminLogin($_POST);
         $type = Session::flashType();
         if ($type == 'danger' || $type == 'warning') {
             echo $twig->render('mp-admin/admin-login.twig', array('page' => 'Admin Login', 'message' => Session::flash(), 'type' => $type, 'title' => 'Whoops..!'));
@@ -16,11 +16,9 @@ if (isset($_POST['action'])) {
                 'message' => Session::flash(),
                 'type' => Session::flashType(),
                 'title' => 'Success..!', 'path' => IMAGES,
-                'fullname' => Session::get('fullname')));
+                'fullname' => Session::get('fullname'), ));
         }
-       
     }
-
 } else {
     echo $twig->render('mp-admin/admin-login.twig', array('page' => 'Admin Login'));
 }
