@@ -12,17 +12,17 @@
 <div class="hold-transition register-page0">
 <div class="register-box">
 <div class=" mb-4">
-                    {% if type %}
-                        {% autoescape %}
-                    <div class="alert alert-{{ type }}" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h3 class="alert-heading">{{ title }}</h3>
-                        <hr>
-                        <p>{{ message |raw  }}</p>
-                    </div>
-                    {% endautoescape %}
-                    {% endif  %}
-        </div>
+    {% if type %}
+        {% autoescape %}
+    <div class="alert alert-{{ type }}" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h3 class="alert-heading">{{ title }}</h3>
+        <hr>
+        <p>{{ message |raw  }}</p>
+    </div>
+    {% endautoescape %}
+    {% endif  %}
+</div>
   <div class="register-box-body">
     <p class="login-box-msg">New membership</p>
     <form action="/pages/register.php" method="post">
