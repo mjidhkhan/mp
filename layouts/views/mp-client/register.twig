@@ -13,22 +13,18 @@
 <div class="register-box">
 <div class=" mb-4">
                     {% if type %}
-                         {% autoescape %}
+                        {% autoescape %}
                     <div class="alert alert-{{ type }}" role="alert">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    
                         <h3 class="alert-heading">{{ title }}</h3>
-                         <hr>
+                        <hr>
                         <p>{{ message |raw  }}</p>
                     </div>
                     {% endautoescape %}
-                     {% endif  %}
+                    {% endif  %}
         </div>
-  
-
   <div class="register-box-body">
     <p class="login-box-msg">New membership</p>
-
     <form action="/pages/register.php" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" id="inputUsername" name ='fullname' placeholder="Full name">
@@ -54,9 +50,8 @@
         
         <!-- /.col -->
         <div class="col-xs-12">
-         <input  name="action" value="REGISTER"  hidden type="text">
+        <input  name="action" value="REGISTER"  hidden type="text">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-
           
         </div>
         <!-- /.col -->
