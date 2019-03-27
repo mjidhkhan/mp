@@ -142,7 +142,7 @@ class User extends Model
                                     VALUES (:fullname, :username, :email, :hashed_password, :status)');
         try {
             $this->db->beginTransaction();
-            $this->sql->execute(array(':fullname' => $email, ':username' => $username,
+            $this->sql->execute(array(':fullname' => $fullname, ':username' => $username,
                                     ':email' => $email, ':hashed_password' => $hashed_password,
                                     ':status' => $status, ));
             $this->db->commit();
