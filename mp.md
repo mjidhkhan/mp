@@ -21,6 +21,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 ```
+###TODO:
 
-
+- added staff.twig []
+- need to create - staff.php file 
 
