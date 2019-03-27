@@ -138,9 +138,20 @@ class User extends Model
 
     private function CreateNewUser($username, $hashed_password, $email, $status)
     {
-        if ($response) {
+        $this->sql = $this->db->prepare('INSERT INTO  users (fullname, username, email, hashed_password, status) 
+                                    VALUES (:fullname, :username, :email, :hashed_password, :status)');
+        try {
+            $this->db->beginTransaction();
+            $this->sql->execute(array(':fullname' => $email, ':username' => $username,
+                                    ':email' => $email, ':hashed_password' => $hashed_password,
+                                    ':status' => $status, ));
+            $this->db->commit();
             $message = 'User Created. Please go to login page.';
             Session::setFlash($message, 'success');
+        } catch (PDOException $e) {
+            $this->db->rollback();
+            $message = 'Error!: '.$e->getMessage().'</br>';
+            Session::setFlash($message, 'danger');
         }
     }
 
