@@ -1,0 +1,46 @@
+{% extends '_layout.twig' %}
+{% block title %}
+	<section class="text-center">
+    <div class="title">
+      <h1 class="jumbotron-heading">{{ page }}</h1>
+      <p class="lead ">{{ slogon }}</p>
+    </div>
+  </section>
+{% endblock %}
+{% block content %}
+        {% for item in products %} 
+        <section class=" col-lg-12">
+       
+          <div class=" marketing page-font">
+                  <div class="row featurette m-top">
+                    <div class="col-md-4">
+                      <div class="col-md-12 txt-top"><h3 class="products">{{ item.title }}</h3></div>
+                      <div class="col-md-12"><p class="products">{% autoescape %}{{ item.content |raw}}{% endautoescape %}</p></div>
+                  </div>
+                  <div class="col-md-2">
+                      <div class="col-md-12 img-top img-bottom">
+                          <img  src="/assets/upload/choco-fruit.jpg"> 
+                      </div>
+                    </div>
+                  </div><!-- /.container -->
+                  <div class="row featurette">
+                  <div class="col-md-12">
+                        <div class="btn-group col-md-4">
+                          <a type="button" class="btn btn-sm btn-info" href="?ID={{ item.id}}">Details</a>
+                          <a type="button" class="btn btn-sm btn-info" href="?ID={{ item.id}}">Recepie</a>
+                          <a type="button" class="btn btn-sm btn-info" href="?ID={{ item.id}}">Nutrition</a>
+                          <a type="button" class="btn btn-sm btn-info" href="?ID={{ item.id}}">Order</a>
+                        </div>
+                    </div> 
+                  </div>
+                  <!--hr class="featurette-divider"-->
+            <br>
+                  
+        </div>
+		<br>
+    <hr>
+    </section>
+		
+        {% endfor %}
+         
+{% endblock %}
