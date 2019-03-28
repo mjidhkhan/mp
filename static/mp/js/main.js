@@ -18,3 +18,14 @@ function showResponse() {
         title: 'Signed in successfully'
     })
 }
+
+
+
+$("#create_recipe").click(function(event) {
+    event.preventDefault();
+    alert(1)
+});
+$("#create_recipe2").click(function(event) {
+    event.preventDefault();
+    alert(1)
+});
