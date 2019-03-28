@@ -2,7 +2,7 @@
 Options -MultiViews
 RewriteEngine On
 
-RewriteBase /
+RewriteBase /cha-mp/
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
