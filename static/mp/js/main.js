@@ -19,11 +19,29 @@ function showResponse() {
     })
 }
 
+var item;
+$('select#age').on('change', function() {
+    item = this.value;
+});
+
+$("#create_recipe").click(function(e) {
+    e.preventDefault();
+    var action = 'ADD_RECPIE'
+    var name = $('#rcpname').val()
+    var data = { name, item }
 
 
-$("#create_recipe").click(function(event) {
-    event.preventDefault();
-    alert(1)
+
+    var request = $.ajax({
+        url: "admin-functions.php",
+        method: "POST",
+        data: { data: data, action: action }
+    });
+    request.done(function(msg) {
+        $("#log").html(msg);
+    });
+
+
 });
 $("#create_recipe2").click(function(event) {
     event.preventDefault();
