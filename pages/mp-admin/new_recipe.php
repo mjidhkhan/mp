@@ -4,4 +4,9 @@ $recipe = new Recipe();
 $data = $recipe->getAllIngredients();
 
 
-echo $twig->render('mp-admin/recipe.twig', array('page' => 'Recipe', 'title'=>'Test', 'data'=>$data));
+echo $twig->render('mp-admin/recipe.twig', array(
+	'page' => 'Recipe', 
+	'title'=>'Test', 
+	'data'=>$data,
+	'path' => IMAGES, 
+	'fullname' => Session::get('fullname')));
