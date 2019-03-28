@@ -1,7 +1,7 @@
 $(function() {
     $(document).scroll(function() {
-        var $nav = $(".navbar-fixed-top");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+        //var $nav = $(".navbar-fixed-top");
+        // $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
     });
 });
 
@@ -19,16 +19,18 @@ function showResponse() {
     })
 }
 
-var item;
-$('select#age').on('change', function() {
-    item = this.value;
+var item_id;
+var id = [];
+$('select#item1, select#item2, select#item3, select#item4').on('change', function() {
+    item_id = this.value;
+    id.push(item_id)
 });
 
 $("#create_recipe").click(function(e) {
     e.preventDefault();
     var action = 'ADD_RECPIE'
     var name = $('#rcpname').val()
-    var data = { name, item }
+    var data = { name, id }
 
 
 

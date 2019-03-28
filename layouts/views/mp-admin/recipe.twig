@@ -12,7 +12,7 @@
  <div class="row">
         <!-- Left col -->
         
-  <section class="col-lg-7 connectedSortable">
+  <section class="col-lg-7">
       
         <!-- left column -->
         <div class="col-md-12">
@@ -25,21 +25,71 @@
             <!-- form start -->
             <form role="form">
               <div class="box-body">
-                <div class="form-group">
+                <div class="col-md-9 Amberform-group">
                   <label for="rcpname">Recpie Name</label>
                   <input type="text" class="form-control" id="rcpname" placeholder="Enter name">
+                  
                 </div>
-                <div class="form-group">
-                  <label for="ingredients">Password</label>
-                  <select id="age">
-                  {% for age in range(1, 10) %}
-                   {% set foo = ['foo', 'bar','sh','CH','DH', 'EH', 'FH', 'O8','O9','O10'] %}
-                   <p>{{ age }}<p>
-                      <option value="{{ age }}">{{ foo[age-1] }}</option>
+                <div class="col-md-6 form-group">
+                  <label for="ingredients">Item</label>
+                  <select class="form-control" id="item1">
+                   <option value="0">Select ingredient</option>
+                  {% for item in data %}
+                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                   {% endfor %}
                   </select>
+                </div>
+                  <div class="col-md-3 form-group">
+                  <label for="ingredients">Quantity</label>
+                  <input type="text" class="form-control" name="qty_1" size="16"/>
+				          <span class="small">g/ml</span></label>
                 
+                </div>
 
+                <div class="col-md-6 form-group">
+                  <label for="ingredients">Item</label>
+                  <select class="form-control" id="item2">
+                   <option value="0">Select ingredient</option>
+                  {% for item in data %}
+                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                  {% endfor %}
+                  </select>
+                  </div>
+                  <div class="col-md-3 form-group">
+                  <label for="ingredients">Quantity</label>
+                  <input type="text" class="form-control" name="qty_2" size="16"/>
+				          <span class="small">g/ml</span></label>
+                
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="ingredients">Item</label>
+                  <select class="form-control" id="item3">
+                  <option value="0">Select ingredient</option>
+                  {% for item in data %}
+                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                  {% endfor %}
+                  </select>
+                  </div>
+                  <div class="col-md-3 form-group">
+                  <label for="ingredients">Quantity</label>
+                  <input type="text" class="form-control" name="qty_3" size="16"/>
+				          <span class="small">g/ml</span></label>
+                
+                </div>
+                <div class="col-md-6 form-group">
+                  <label for="ingredients">Item</label>
+                  <select class="form-control" id="item4">
+                   <option value="0">Select ingredient</option>
+                  {% for item in data %}
+                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                  {% endfor %}
+                  </select>
+                  </div>
+                  <div class="col-md-3 form-group">
+                  <label for="ingredients">Quantity</label>
+                  <input type="text" class="form-control" name="qty_4" size="16"/>
+				          <span class="small">g/ml</span></label>
+                
                 </div>
                
                
@@ -47,7 +97,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" id="create_recipe" class="btn btn-primary">Submit</button>
+                <button type="submit" id="create_recipe" class="btn btn-primary pull-right">Submit</button>
               </div>
             </form>
           </div>
@@ -56,7 +106,7 @@
        
       </section>
         <!-- right col -->
-        <section class="col-lg-5 connectedSortable">
+        <section class="col-lg-5">
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
