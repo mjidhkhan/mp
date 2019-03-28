@@ -1,12 +1,16 @@
 <?php
+
 require_once dirname(__DIR__).'../../pages/views.php';
 $recipe = new Recipe();
-$data = $recipe->getAllIngredients();
-
+$ingredients = $recipe->getAllIngredients();
+$mealType = $recipe->getAllMealTypes();
+$mealCategory = $recipe->getAllMealCategoryType();
 
 echo $twig->render('mp-admin/recipe.twig', array(
-	'page' => 'Recipe', 
-	'title'=>'Test', 
-	'data'=>$data,
-	'path' => IMAGES, 
-	'fullname' => Session::get('fullname')));
+    'page' => 'Recipe',
+    'title' => 'Test',
+    'ingredients' => $ingredients,
+    'mealType' => $mealType,
+    'mealCategory' => $mealCategory,
+    'path' => IMAGES,
+    'fullname' => Session::get('fullname'), ));

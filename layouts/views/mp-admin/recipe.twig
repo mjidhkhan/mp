@@ -25,21 +25,42 @@
             <!-- form start -->
             <form role="form">
               <div class="box-body">
-                <div class="col-md-9 Amberform-group">
+                  <div class="col-md-5 form-group">
+                      <label for="ingredients">Meal Type</label>
+                      <select class="form-control" id="mealtype">
+                          <option value="0">Select Meal Type</option>
+                              {% for item in mealType %}
+                              <option value="{{ item.id }}">{{ item.meal_type }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="col-md-5 form-group">
+                      <label for="ingredients">Meal Course Type</label>
+                      <select class="form-control" id="mealcat">
+                          <option value="0">Select Course Type</option>
+                          {% for item in mealCategory %}
+                              <option value="{{ item.id }}">{{ item.meal_category }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              <br>
+              <br>
+                <div class="col-md-10 Amberform-group">
                   <label for="rcpname">Recpie Name</label>
                   <input type="text" class="form-control" id="rcpname" placeholder="Enter name">
-                  
+                    <br>
+
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="ingredients">Item</label>
+                  <label for="ingredients">Ingredient</label>
                   <select class="form-control" id="item1">
                    <option value="0">Select ingredient</option>
-                  {% for item in data %}
+                  {% for item in ingredients %}
                       <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                   {% endfor %}
                   </select>
                 </div>
-                  <div class="col-md-3 form-group">
+                  <div class="col-md-4 form-group">
                   <label for="ingredients">Quantity</label>
                   <input type="text" class="form-control" name="qty_1" size="16"/>
 				          <span class="small">g/ml</span></label>
@@ -47,50 +68,63 @@
                 </div>
 
                 <div class="col-md-6 form-group">
-                  <label for="ingredients">Item</label>
+                  <label for="ingredients">Ingredient</label>
                   <select class="form-control" id="item2">
                    <option value="0">Select ingredient</option>
-                  {% for item in data %}
+                    {% for item in ingredients %}
                       <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                   {% endfor %}
                   </select>
                   </div>
-                  <div class="col-md-3 form-group">
+                  <div class="col-md-4 form-group">
                   <label for="ingredients">Quantity</label>
                   <input type="text" class="form-control" name="qty_2" size="16"/>
 				          <span class="small">g/ml</span></label>
                 
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="ingredients">Item</label>
+                  <label for="ingredients">Ingredient</label>
                   <select class="form-control" id="item3">
                   <option value="0">Select ingredient</option>
-                  {% for item in data %}
+                    {% for item in ingredients %}
                       <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                   {% endfor %}
                   </select>
                   </div>
-                  <div class="col-md-3 form-group">
+                  <div class="col-md-4 form-group">
                   <label for="ingredients">Quantity</label>
                   <input type="text" class="form-control" name="qty_3" size="16"/>
 				          <span class="small">g/ml</span></label>
                 
                 </div>
                 <div class="col-md-6 form-group">
-                  <label for="ingredients">Item</label>
+                  <label for="ingredients">Ingredient</label>
                   <select class="form-control" id="item4">
                    <option value="0">Select ingredient</option>
-                  {% for item in data %}
+                  {% for item in ingredients %}
                       <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
                   {% endfor %}
                   </select>
                   </div>
-                  <div class="col-md-3 form-group">
+                  <div class="col-md-4 form-group">
                   <label for="ingredients">Quantity</label>
                   <input type="text" class="form-control" name="qty_4" size="16"/>
 				          <span class="small">g/ml</span></label>
                 
                 </div>
+
+
+<div class="col-md-10 form-group">
+    <label>Short Description</label>
+    <textarea id="sd" class="form-control" placeholder="Enter ..." rows="3"></textarea>
+</div>
+<div class="col-md-10 form-group">
+    
+<label>Select image to upload</label>
+
+    <input id="fileToUpload" type="file">
+
+</div>
                
                
               </div>

@@ -319,3 +319,11 @@
             .admin-nav {
                 height: 54px;
             }
+            .admin-content {
+                min-height: 0px;
+                padding: 15px;
+                margin-right: auto;
+                margin-left: auto;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
