@@ -4,7 +4,7 @@ define('TEMPLATES', dirname(__DIR__) . '/layouts/templates/');
 define('PAGES', dirname(__DIR__) . '/layouts/views/');
 define('CONFIG', dirname(__DIR__) . '/config/');
 define('CLASSES', dirname(__DIR__) . '/classes/');
-define('IMAGES', '/static/images/');
+define('IMAGES', '/static/mp/images/');
 define('DB', dirname(__DIR__) . '/settings/');
 define('admin', dirname(__DIR__) . '/pages/mp-admin/');
 define('client', dirname(__DIR__) . '/pages/client/');
