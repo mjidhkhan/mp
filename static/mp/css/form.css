@@ -1,87 +1,245 @@
 .form-signin {
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 420px;
+    padding: 15px;
+    margin: auto;
 }
 
 .form-label-group {
-  position: relative;
-  margin-bottom: 1rem;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
-.form-label-group > input,
-.form-label-group > label {
-  height: 3.125rem;
-  padding: .75rem;
+.form-label-group>input,
+.form-label-group>label {
+    height: 3.125rem;
+    padding: .75rem;
 }
 
-.form-label-group > label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  margin-bottom: 0; /* Override default `<label>` margin */
-  line-height: 1.5;
-  color: #495057;
-  pointer-events: none;
-  cursor: text; /* Match the input under the label */
-  border: 1px solid transparent;
-  border-radius: .25rem;
-  transition: all .1s ease-in-out;
+.form-label-group>label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    /* Override default `<label>` margin */
+    line-height: 1.5;
+    color: #495057;
+    pointer-events: none;
+    cursor: text;
+    /* Match the input under the label */
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    transition: all .1s ease-in-out;
 }
 
 .form-label-group input::-webkit-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input:-ms-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::-ms-input-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::-moz-placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input::placeholder {
-  color: transparent;
+    color: transparent;
 }
 
 .form-label-group input:not(:placeholder-shown) {
-  padding-top: 1.25rem;
-  padding-bottom: .25rem;
+    padding-top: 1.25rem;
+    padding-bottom: .25rem;
 }
 
-.form-label-group input:not(:placeholder-shown) ~ label {
-  padding-top: .25rem;
-  padding-bottom: .25rem;
-  font-size: 12px;
-  color: #777;
+.form-label-group input:not(:placeholder-shown)~label {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-size: 12px;
+    color: #777;
 }
+
 
 /* Fallback for Edge
 -------------------------------------------------- */
+
 @supports (-ms-ime-align: auto) {
-  .form-label-group > label {
-    display: none;
-  }
-  .form-label-group input::-ms-input-placeholder {
-    color: #777;
-  }
+    .form-label-group>label {
+        display: none;
+    }
+    .form-label-group input::-ms-input-placeholder {
+        color: #777;
+    }
 }
+
 
 /* Fallback for IE
 -------------------------------------------------- */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .form-label-group > label {
-    display: none;
-  }
-  .form-label-group input:-ms-input-placeholder {
-    color: #777;
-  }
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    .form-label-group>label {
+        display: none;
+    }
+    .form-label-group input:-ms-input-placeholder {
+        color: #777;
+    }
+}
+
+
+/** *********************** FORM STEP WIZAED ******************** **/
+
+.wizard {
+    margin: 20px auto;
+    background: #fff;
+}
+
+.wizard .nav-tabs {
+    position: relative;
+    margin: 40px auto;
+    margin-bottom: 0;
+    border-bottom-color: #e0e0e0;
+}
+
+.wizard>div.wizard-inner {
+    position: relative;
+}
+
+.connecting-line {
+    height: 2px;
+    background: #e0e0e0;
+    position: absolute;
+    width: 80%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: 1;
+}
+
+.wizard .nav-tabs>li.active>a,
+.wizard .nav-tabs>li.active>a:hover,
+.wizard .nav-tabs>li.active>a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+span.round-tab i {
+    color: #555555;
+    color: #5555554d
+}
+
+.wizard li.active span.round-tab {
+    background: #fff;
+    border: 2px solid #5bc0de;
+}
+
+.wizard li.active span.round-tab i {
+    color: #5bc0de;
+}
+
+span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+    border: 2px solid #e0e0e0;
+}
+
+.wizard .nav-tabs>li {
+    width: 16%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 40%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 40%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+    ;
+}
+
+.wizard .nav-tabs>li a {
+    width: 50px;
+    height: 50px;
+    margin: 20px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+.wizard .nav-tabs>li a:hover {
+    background: transparent;
+}
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media( max-width: 585px) {
+    .wizard {
+        width: 90%;
+        height: auto !important;
+    }
+    span.round-tab {
+        font-size: 16px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .wizard .nav-tabs>li a {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 35%;
+    }
+}
+
+.wz-size {
+    font-weight: 700;
 }

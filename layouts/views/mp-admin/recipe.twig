@@ -9,9 +9,12 @@
   </section>
 {% endblock %}
 {% block content %}
- <div class="row">
-        <!-- Left col -->
-  <section class="col-lg-6">
+
+
+
+	<div class="row">
+ <form role="form" enctype="multipart/form-data" id="rcpForm">
+  <section class="col-lg-7">
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
@@ -21,133 +24,122 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" enctype="multipart/form-data" id="rcpForm">
-              <div class="box-body">
-                    <fieldset class=" col-md-12 scheduler-border">
-                    <legend class="scheduler-border"> Recipe Name  and Short Description</legend>
-                  <div class="col-md-10 Amberform-group">
-                    <label for="rcpname">Recpie Name</label>
-                    <input type="text" class="form-control" id="rcpname"  name="rcpname" placeholder="Enter name"  required >
-                      <br>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                 <i class="wz-size">1</i>
+                            </span>
+                        </a>
+                    </li>
 
-                  </div>
-                  <div class="col-md-10 form-group">
-                      <label>Short Description</label>
-                      <textarea id="sd" name="sd" class="form-control" placeholder="Short description ..." rows="3" required></textarea>
-                  </div>
-                  </fieldset>
-                  <fieldset class=" col-md-12 scheduler-border">
-                    <legend class="scheduler-border">Recipe Type and Category</legend>
-                    <div class="col-md-6 form-group">
-                        <label for="ingredients">Meal Type</label>
-                        <select class="form-control" id="mealtype" name="mealtype" required>
-                            <option value="0">Select Meal Type</option>
-                                {% for item in mealType %}
-                                <option value="{{ item.id }}">{{ item.meal_type }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label for="ingredients">Meal Course Type</label>
-                        <select required class="form-control" id="mealcat" name="mealcat" >
-                            <option value="0">Select Course Type</option>
-                            {% for item in mealCategory %}
-                                <option value="{{ item.id }}">{{ item.meal_category }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    </fieldset>
-<!--
-                    <fieldset class=" col-md-12 scheduler-border">
-                    <legend class="scheduler-border">Recipe Ingredients and Quantity</legend>
-                
-                  <div class="col-md-6 form-group">
-                    <label for="ingredients">Ingredient</label>
-                    <select class="form-control" id="item1"  name="item1"required>
-                    <option value="0">Select ingredient</option>
-                    {% for item in ingredients %}
-                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                    {% endfor %}
-                    </select>
-                  </div>
-                    <div class="col-md-4 form-group">
-                    <label for="ingredients">Quantity</label>
-                    <input type="number" class="form-control"  id="qty_1" size="16"  name="qty_1" required />
-                    <span class="small pull-right">g/ml</span></label>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="ingredients">Ingredient</label>
-                    <select class="form-control" name="item2" id="item2" required>
-                    <option value="0">Select ingredient</option>
-                      {% for item in ingredients %}
-                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                    {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-md-4 form-group">
-                    <label for="ingredients">Quantity</label>
-                    <input type="number" class="form-control" id="qty_2" size="16"  name="qty_2" required />
-                    <span class="small pull-right">g/ml</span></label>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="ingredients">Ingredient</label>
-                    <select class="form-control" id="item3" name="item3" required>
-                    <option value="0">Select ingredient</option>
-                      {% for item in ingredients %}
-                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                    {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-md-4 form-group">
-                    <label for="ingredients">Quantity</label>
-                    <input type="number" class="form-control" id="qty_3" size="16"  name="qty_3" required />
-                    <span class="small pull-right">g/ml</span></label>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="ingredients">Ingredient</label>
-                    <select class="form-control" id="item4" name="item4" required>
-                    <option value="0">Select ingredient</option>
-                    {% for item in ingredients %}
-                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                    {% endfor %}
-                    </select>
-                    </div>
-                    <div class="col-md-4 form-group">
-                    <label for="ingredients">Quantity</label>
-                    <input type="number" class="form-control" id="qty_4" size="16" name="qty_4"  required />
-                    <span class="small pull-right">g/ml</span></label>
-                  </div>
-                  </fieldset>
--->
-                  <fieldset class=" col-md-12 scheduler-border">
-                    <legend class="scheduler-border">Recipe Image Upload</legend>
-                  <div class="col-md-12 form-group">
-                    <label>Select image to upload</label>
-                    <input id="fileToUpload" class="form-control" type="file" name="file" required >
-                  </div>
-                  </fieldset>
-              </div>
-                <!-- /.box-body -->
-                <div class="box-footer">
-                   <h4>Recipe Creation area </h4>
-                </div>
-         
-          </div>
-          <!-- /.box -->
-        </div>
-      </section>
-        <!-- right col -->
-        <section class="col-lg-6">
-        <div class="col-md-12">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Recipe Ingredients</h3>
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <span class="round-tab">
+                                 <i class="wz-size">2</i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                 <i class="wz-size">3</i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                <i class="wz-size">4</i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                <i class="wz-size">5</i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="wz-size">6</i>
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-              <div class="box-body">
-            <fieldset class=" col-md-12 scheduler-border">
+
+
+<!-- Step 1 -->
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                          <div class="box-body">
+                              <fieldset class=" col-md-12 scheduler-border">
+                                <legend class="scheduler-border"> Recipe Name  and Short Description</legend>
+                                <div class="col-md-10 Amberform-group">
+                                  <label for="rcpname">Recpie Name</label>
+                                  <input type="text" class="form-control" id="rcpname"  name="rcpname" placeholder="Enter name"  required >
+                                    <br>
+
+                                </div>
+                                <div class="col-md-10 form-group">
+                                    <label>Short Description</label>
+                                    <textarea id="short_desc" name="short_desc" class="form-control" placeholder="Short description ..." rows="3" required></textarea>
+                                </div>
+                              </fieldset>
+                            </div>
+                    
+                        
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">Next</button></li>
+                        </ul>
+                    </div>
+<!-- /Step 1 -->
+<!-- Step 2 -->
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                    
+                        <div class="box-body">
+                          <fieldset class=" col-md-12 scheduler-border">
+                          <legend class="scheduler-border">Recipe Type and Category</legend>
+                          <div class="col-md-6 form-group">
+                              <label for="ingredients">Meal Type</label>
+                              <select class="form-control" id="mealtype" name="mealtype" required>
+                                  <option value="0">Select Meal Type</option>
+                                      {% for item in mealType %}
+                                      <option value="{{ item.id }}">{{ item.meal_type }}</option>
+                                  {% endfor %}
+                              </select>
+                          </div>
+                          <div class="col-md-6 form-group">
+                              <label for="ingredients">Meal Course Type</label>
+                              <select required class="form-control" id="mealcat" name="mealcat" >
+                                  <option value="0">Select Course Type</option>
+                                  {% for item in mealCategory %}
+                                      <option value="{{ item.id }}">{{ item.meal_category }}</option>
+                                  {% endfor %}
+                              </select>
+                          </div>
+                          </fieldset>
+                      
+                    </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">Next</button></li>
+                        </ul>
+                    </div>
+<!-- /Step 2 -->
+<!-- Step 3 -->
+                <div class="tab-pane" role="tabpanel" id="step3">
+                    
+                        <div class="box-body">
+                        <fieldset class=" col-md-12 scheduler-border">
                     <legend class="scheduler-border">Recipe Ingredients and Quantity</legend>
                 
                   <div class="col-md-6 form-group">
@@ -207,29 +199,89 @@
                     <span class="small pull-right">g/ml</span></label>
                   </div>
                   </fieldset>
-                  <!--
-                  <fieldset class=" col-md-12 scheduler-border">
-                    <legend class="scheduler-border">Recipe Image Upload</legend>
-                  <div class="col-md-10 form-group">
-                    <label>Select image to upload</label>
-                    <input id="fileToUpload" class="form-control" type="file" name="file" required >
-                  </div>
-                  </fieldset>
-                  -->
-                   <!-- /.box-body -->
-                   </div>
-                <div class="box-footer">
-                 <button type="submit" id="create_recipe" class="btn btn-primary ">Submit</button>
-                </div>
-            </form>
-          </div>
-          <!-- /.box -->
 
-       
-     
-        
-        
-        </section>
+                   
+                    </div>
+                        
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                            
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Next</button></li>
+                        </ul>
+                    </div>
+<!-- /Step 3 -->
+<!-- Step 4 -->
+                    <div class="tab-pane" role="tabpanel" id="step4">
+                        
+                        <div class="box-body">
+                        <fieldset class=" col-md-12 scheduler-border">
+                                <legend class="scheduler-border"> Recipe Instructions</legend>
+                                <div class="col-md-10 form-group">
+                                    <label>Short Description</label>
+                                    <textarea id="rcp_instructions" name="rcp_instructions" class="form-control" placeholder="Recipe Instructions ..." rows="3" required></textarea>
+                                </div>
+                              </fieldset>
+                        
+                      </div>
+                   
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                           
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Next</button></li>
+                        </ul>
+                    </div>
+<!-- /Step 4 -->
+<!-- Step 5 -->
+                    <div class="tab-pane" role="tabpanel" id="step5">
+                        
+                        <div class="box-body">
+                              <fieldset class=" col-md-12 scheduler-border">
+                                <legend class="scheduler-border"> Recipe Additional Notes</legend>
+                                <div class="col-md-10 form-group">
+                                    <label>Short Description</label>
+                                    <textarea id="additional_notes" name="additional_notes" class="form-control" placeholder="Additional notes ..." rows="3" required></textarea>
+                                </div>
+                              </fieldset>
+                        
+                      </div>
+                    
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                           
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">Next</button></li>
+                            
+                        </ul>
+                    </div>
+<!-- Step /5 -->
+<!-- Step 6 -->
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                    
+                        <div class="box-body">
+                        <fieldset class=" col-md-12 scheduler-border">
+                          <legend class="scheduler-border">Recipe Image Upload</legend>
+                                <div class="col-md-12 form-group">
+                                  <label>Select image to upload</label>
+                                  <input id="fileToUpload" class="form-control" type="file" name="file" required >
+                                </div>
+                        </fieldset>
+                        <h3>Upload Recipe Image and Submit form</h3>
+                        <p>If you have any problem check you filled all fields.</p>
+                  
+                    </div>
+                        
+                    </div>
+<!-- Step /6 -->
+                    <div class="clearfix"></div>
+                </div>
+           
+        </div>
+        <div class="box-footer">
+                 <button type="submit" id="create_recipe" class="btn btn-primary pull-right">Submit</button>
+        </div>
+    
+  </section>
+   </div>
+</div>
         
 </div>
               <!-- /.row -->
