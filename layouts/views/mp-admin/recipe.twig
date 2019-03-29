@@ -11,9 +11,7 @@
 {% block content %}
  <div class="row">
         <!-- Left col -->
-        
-  <section class="col-lg-7">
-      
+  <section class="col-lg-6">
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
@@ -23,160 +21,206 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" enctype="multipart/form-data" id="rcpForm">
               <div class="box-body">
-                  <div class="col-md-5 form-group">
-                      <label for="ingredients">Meal Type</label>
-                      <select class="form-control" id="mealtype">
-                          <option value="0">Select Meal Type</option>
-                              {% for item in mealType %}
-                              <option value="{{ item.id }}">{{ item.meal_type }}</option>
-                          {% endfor %}
-                      </select>
-                  </div>
-                  <div class="col-md-5 form-group">
-                      <label for="ingredients">Meal Course Type</label>
-                      <select class="form-control" id="mealcat">
-                          <option value="0">Select Course Type</option>
-                          {% for item in mealCategory %}
-                              <option value="{{ item.id }}">{{ item.meal_category }}</option>
-                          {% endfor %}
-                      </select>
-                  </div>
-              <br>
-              <br>
-                <div class="col-md-10 Amberform-group">
-                  <label for="rcpname">Recpie Name</label>
-                  <input type="text" class="form-control" id="rcpname" placeholder="Enter name">
-                    <br>
+                    <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border"> Recipe Name  and Short Description</legend>
+                  <div class="col-md-10 Amberform-group">
+                    <label for="rcpname">Recpie Name</label>
+                    <input type="text" class="form-control" id="rcpname"  name="rcpname" placeholder="Enter name"  required >
+                      <br>
 
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="ingredients">Ingredient</label>
-                  <select class="form-control" id="item1">
-                   <option value="0">Select ingredient</option>
-                  {% for item in ingredients %}
-                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                  {% endfor %}
-                  </select>
-                </div>
-                  <div class="col-md-4 form-group">
-                  <label for="ingredients">Quantity</label>
-                  <input type="text" class="form-control" name="qty_1" size="16"/>
-				          <span class="small">g/ml</span></label>
+                  </div>
+                  <div class="col-md-10 form-group">
+                      <label>Short Description</label>
+                      <textarea id="sd" name="sd" class="form-control" placeholder="Short description ..." rows="3" required></textarea>
+                  </div>
+                  </fieldset>
+                  <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border">Recipe Type and Category</legend>
+                    <div class="col-md-6 form-group">
+                        <label for="ingredients">Meal Type</label>
+                        <select class="form-control" id="mealtype" name="mealtype" required>
+                            <option value="0">Select Meal Type</option>
+                                {% for item in mealType %}
+                                <option value="{{ item.id }}">{{ item.meal_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="ingredients">Meal Course Type</label>
+                        <select required class="form-control" id="mealcat" name="mealcat" >
+                            <option value="0">Select Course Type</option>
+                            {% for item in mealCategory %}
+                                <option value="{{ item.id }}">{{ item.meal_category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </fieldset>
+<!--
+                    <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border">Recipe Ingredients and Quantity</legend>
                 
-                </div>
-
-                <div class="col-md-6 form-group">
-                  <label for="ingredients">Ingredient</label>
-                  <select class="form-control" id="item2">
-                   <option value="0">Select ingredient</option>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item1"  name="item1"required>
+                    <option value="0">Select ingredient</option>
                     {% for item in ingredients %}
-                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                  {% endfor %}
-                  </select>
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
                   </div>
-                  <div class="col-md-4 form-group">
-                  <label for="ingredients">Quantity</label>
-                  <input type="text" class="form-control" name="qty_2" size="16"/>
-				          <span class="small">g/ml</span></label>
-                
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="ingredients">Ingredient</label>
-                  <select class="form-control" id="item3">
-                  <option value="0">Select ingredient</option>
+                    <div class="col-md-4 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control"  id="qty_1" size="16"  name="qty_1" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" name="item2" id="item2" required>
+                    <option value="0">Select ingredient</option>
+                      {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_2" size="16"  name="qty_2" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item3" name="item3" required>
+                    <option value="0">Select ingredient</option>
+                      {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_3" size="16"  name="qty_3" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item4" name="item4" required>
+                    <option value="0">Select ingredient</option>
                     {% for item in ingredients %}
-                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                  {% endfor %}
-                  </select>
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_4" size="16" name="qty_4"  required />
+                    <span class="small pull-right">g/ml</span></label>
                   </div>
-                  <div class="col-md-4 form-group">
-                  <label for="ingredients">Quantity</label>
-                  <input type="text" class="form-control" name="qty_3" size="16"/>
-				          <span class="small">g/ml</span></label>
-                
-                </div>
-                <div class="col-md-6 form-group">
-                  <label for="ingredients">Ingredient</label>
-                  <select class="form-control" id="item4">
-                   <option value="0">Select ingredient</option>
-                  {% for item in ingredients %}
-                      <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
-                  {% endfor %}
-                  </select>
+                  </fieldset>
+-->
+                  <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border">Recipe Image Upload</legend>
+                  <div class="col-md-12 form-group">
+                    <label>Select image to upload</label>
+                    <input id="fileToUpload" class="form-control" type="file" name="file" required >
                   </div>
-                  <div class="col-md-4 form-group">
-                  <label for="ingredients">Quantity</label>
-                  <input type="text" class="form-control" name="qty_4" size="16"/>
-				          <span class="small">g/ml</span></label>
-                
+                  </fieldset>
+              </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                   <h4>Recipe Creation area </h4>
                 </div>
-
-
-<div class="col-md-10 form-group">
-    <label>Short Description</label>
-    <textarea id="sd" class="form-control" placeholder="Enter ..." rows="3"></textarea>
-</div>
-<div class="col-md-10 form-group">
-    
-<label>Select image to upload</label>
-
-    <input id="fileToUpload" type="file">
-
-</div>
-               
-               
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button type="submit" id="create_recipe" class="btn btn-primary pull-right">Submit</button>
-              </div>
-            </form>
+         
           </div>
           <!-- /.box -->
-
-       
+        </div>
       </section>
         <!-- right col -->
-        <section class="col-lg-5">
+        <section class="col-lg-6">
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Quick Example</h3>
+              <h3 class="box-title">Recipe Ingredients</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border">Recipe Ingredients and Quantity</legend>
+                
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item1"  name="item1"required>
+                    <option value="0">Select ingredient</option>
+                    {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                    <div class="col-md-6 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control"  id="qty_1" size="16"  name="qty_1" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" name="item2" id="item2" required>
+                    <option value="0">Select ingredient</option>
+                      {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_2" size="16"  name="qty_2" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item3" name="item3" required>
+                    <option value="0">Select ingredient</option>
+                      {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_3" size="16"  name="qty_3" required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="ingredients">Ingredient</label>
+                    <select class="form-control" id="item4" name="item4" required>
+                    <option value="0">Select ingredient</option>
+                    {% for item in ingredients %}
+                        <option value="{{ item.id }}">{{ item.ingredient_name }}</option>
+                    {% endfor %}
+                    </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                    <label for="ingredients">Quantity</label>
+                    <input type="number" class="form-control" id="qty_4" size="16" name="qty_4"  required />
+                    <span class="small pull-right">g/ml</span></label>
+                  </div>
+                  </fieldset>
+                  <!--
+                  <fieldset class=" col-md-12 scheduler-border">
+                    <legend class="scheduler-border">Recipe Image Upload</legend>
+                  <div class="col-md-10 form-group">
+                    <label>Select image to upload</label>
+                    <input id="fileToUpload" class="form-control" type="file" name="file" required >
+                  </div>
+                  </fieldset>
+                  -->
+                   <!-- /.box-body -->
+                   </div>
+                <div class="box-footer">
+                 <button type="submit" id="create_recipe" class="btn btn-primary ">Submit</button>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
-                </div>
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-              {{path}}
-                <button type="submit" class="btn btn-primary" id="create_recipe2">Submit</button>
-              </div>
             </form>
           </div>
           <!-- /.box -->

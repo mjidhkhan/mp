@@ -45,4 +45,17 @@ class Recipe extends Model
 
         return $this->result;
     }
+
+    public function fileUpload($fileName, $sourcePath, $targetPath,$fileType){
+        $valid_extensions = array("jpeg", "jpg", "png");
+        $temporary = explode(".", $fileName);
+        $file_extension = end($temporary);
+        if((($fileType == "image/png") || ($fileType == "image/jpg") || ($fileType == "image/jpeg")) && in_array($file_extension, $valid_extensions)){
+           // $sourcePath = $_FILES['file']['tmp_name'];
+            //$targetPath = "../../static/mp/images/".$fileName;
+            if(move_uploaded_file($sourcePath,$targetPath)){
+                $uploadedFile = $fileName;
+            }
+        }
+    }
 }
