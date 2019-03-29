@@ -241,5 +241,6 @@ span.round-tab:hover {
 }
 
 .wz-size {
-    font-weight: 700;
+    font-weight: 400;
+    font-style: normal;
 }
