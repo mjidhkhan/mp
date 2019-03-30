@@ -1,24 +1,25 @@
 <?php
+
 class Products extends Model
 {
-
     private $result;
     private $sql;
 
     public function __construct()
     {
         parent::__construct();
-
     }
 
     public function getAllMeals()
     {
-        $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1');
+        $this->sql = $this->db->prepare('SELECT DISTINCT course_name, course_notes, course_instructions, description,image 
+FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {
             $this->result = $this->sql->fetchAll();
         }
+
         return $this->result;
     }
 
@@ -31,6 +32,7 @@ class Products extends Model
         if ($count > 0) {
             $this->result = $this->sql->fetchAll();
         }
+
         return $this->result;
     }
 
@@ -51,6 +53,7 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
 
@@ -71,11 +74,11 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
 
     /** Vegetarian Meals End */
-
 
     /** Non Vegetarian Meals Start */
     public function getAllNonVegetarian()
@@ -86,6 +89,7 @@ class Products extends Model
         if ($count > 0) {
             $this->result = $this->sql->fetchAll();
         }
+
         return $this->result;
     }
 
@@ -106,6 +110,7 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
 
@@ -118,7 +123,6 @@ class Products extends Model
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
-
         } else {
             $this->sql = $this->db->prepare('SELECT * FROM `contents` WHERE visible = 1  AND m_cat_id = 2 AND m_type_id = 2');
             $this->sql->execute();
@@ -127,11 +131,11 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
+
     /** Non Vegetarian Meals End */
-
-
     public function getAllDeserts()
     {
         if (ID != '' || ID != null) {
@@ -149,6 +153,7 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
 
@@ -169,6 +174,7 @@ class Products extends Model
                 $this->result = $this->sql->fetchAll();
             }
         }
+
         return $this->result;
     }
 }

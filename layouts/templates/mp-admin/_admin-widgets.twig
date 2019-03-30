@@ -1,11 +1,13 @@
 <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
+<span class="info-box-icon bg-aqua">
+    <i class="fa fa-level-up"></i>
+</span>
 
             <div class="info-box-content">
-              <span class="info-box-text">New Orders</span>
-              <span class="info-box-number">{{orders}}</span>
+              <span class="info-box-text">Next Week's Orders</span>
+              <span class="info-box-number stock default-stock">{{nextweek|number_format(0,',')}}</span>
 <a class="btn btn-link pull-right" href="all_orders.php" type="button">
     View Detail
 </a>
@@ -17,11 +19,13 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+<span class="info-box-icon bg-green">
+    <i class="fa fa-calendar-check-o"></i>
+</span>
 
             <div class="info-box-content">
               <span class="info-box-text">Today's Orders</span>
-              <span class="info-box-number">410</span>
+              <span class="info-box-number stock default-stock">{{today|number_format(0,',')}}</span>
 <a class="btn btn-link pull-right" href="new_orders.php" type="button">
     View Detail
 </a>
@@ -33,11 +37,13 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+<span class="info-box-icon bg-yellow">
+    <i class="fa fa-long-arrow-down"></i>
+</span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Low Stock</span>
-              <span class="info-box-number">13,648</span>
+              <span class="info-box-text">Low Stock Items</span>
+<span class="info-box-number stock warning-stock">{{lowstock|number_format(0,',')}}</span>
 <a class="btn btn-link pull-right" href="low_stock.php" type="button">
     View Detail
 </a>
@@ -49,11 +55,13 @@
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+<span class="info-box-icon bg-red">
+    <i class="fa fa-calendar-times-o"></i>
+</span>
 
             <div class="info-box-content">
               <span class="info-box-text">Out Of Stock</span>
-              <span class="info-box-number">93,139</span>
+              <span class="info-box-number stock danger-stock">{{outofstock|number_format(0,',')}}</span>
               <a type="button" class="btn btn-link pull-right" href="outof_stock.php"> View Detail </a>
             </div>
             <!-- /.info-box-content -->
