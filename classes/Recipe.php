@@ -120,19 +120,17 @@ class Recipe extends Model
             $this->result = $this->sql->fetchAll();
         }
 
-        if($qutyUsed > $this->result['reorder_level']){
+        if ($qtyUsed > $this->result[0]['reorder_level']) {
             $this->$qtyInstock = ($this->result[0]['quantity']) - $qtyUsed;
             $this->sql = $this->db->prepare('UPDATE ingredients SET quantity=:quantity WHERE id=:id');
             $this->sql->execute(array(':quantity' => $this->result, ':id' => $itemID));
-
-        }else{
+        } else {
             $message = 'Not enough Stolck to prepare this recipe.';
             Session::setFlash($message, 'danger');
         }
-        echo 
+        echo 'Eooro';
 
         // Update Stock
-        
     }
 
     private function insertDataToContents($data, $filename)
