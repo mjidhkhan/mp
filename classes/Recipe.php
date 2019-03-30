@@ -4,6 +4,7 @@ class Recipe extends Model
 {
     private $result;
     private $sql;
+    private $qtyInstock;
 
     public function __construct()
     {
@@ -62,19 +63,17 @@ class Recipe extends Model
 
     public function createNewRecipe($data, $filename)
     {
-        echo print_r($data);
         // insert into recipe database
-        /*
+
         if ($this->result = $this->insertDataToRecipe($data)) {
             if ($this->result = $this->insertDataToContents($data, $filename)) {
                 $this->result = $this->insertDataToMealCourse($data);
             }
         }
-        */
 
         //$this->result = $this->insertDataToRecipe($data);
-        $this->result = $this->insertDataToContents($data, $filename);
-        $this->result = $this->insertDataToMealCourse($data);
+        //$this->result = $this->insertDataToContents($data, $filename);
+        //$this->result = $this->insertDataToMealCourse($data);
 
         // insert into contents database
         if ($this->result) {
@@ -96,6 +95,8 @@ class Recipe extends Model
                                                 ':qty_used' => $data['qty_'.$index], ))) {
                     $this->db->commit();
 
+                    // update stock
+                    $this->updateStock($data['item'.$index], $data['qty_'.$index]);
                     // return true;
                 }
             } catch (PDOException $e) {
@@ -110,18 +111,44 @@ class Recipe extends Model
         return true;
     }
 
+    private function updateStock($itemID, $qtyUsed)
+    {
+        $this->sql = $this->db->prepare('SELECT quantity, reorder_level FROM `ingredients` WHERE id =:id');
+        $this->sql->execute(array(':id' => $itemID));
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+
+        if($qutyUsed > $this->result['reorder_level']){
+            $this->$qtyInstock = ($this->result[0]['quantity']) - $qtyUsed;
+            $this->sql = $this->db->prepare('UPDATE ingredients SET quantity=:quantity WHERE id=:id');
+            $this->sql->execute(array(':quantity' => $this->result, ':id' => $itemID));
+
+        }else{
+            $message = 'Not enough Stolck to prepare this recipe.';
+            Session::setFlash($message, 'danger');
+        }
+        echo 
+
+        // Update Stock
+        
+    }
+
     private function insertDataToContents($data, $filename)
     {
-        echo $filename;
-        $this->sql = $this->db->prepare('INSERT INTO  content (title, visible, m_cat_id, m_type_id, description, image) 
-                                    VALUES (:title, :visible, :m_cat_id, :m_type_id , :description, :image');
+        echo 'FILE: '.$filename;
+        echo print_r($data);
+        $this->sql = $this->db->prepare('INSERT INTO  contents (title, visible, m_cat_id, m_type_id, description, image) 
+                                    VALUES (:title, :visible, :m_cat_id, :m_type_id , :description, :image)');
         try {
             $this->db->beginTransaction();
             if ($this->sql->execute(array(':title' => $data['rcpname'], ':visible' => 1,
                                         ':m_cat_id' => $data['mealcat'], ':m_type_id' => $data['mealtype'],
-                                        ':description' => $data['short_desc'], ':image' => $filename, )
-                                        )) {
+                                        ':description' => $data['short_desc'], ':image' => $filename, ))) {
                 $this->db->commit();
+
+                return true;
             }
         } catch (PDOException $e) {
             $this->db->rollback();
@@ -134,20 +161,20 @@ class Recipe extends Model
 
     private function insertDataToMealCourse($data)
     {
-        return true;
         // Data to pass in query
-        $this->sql = $this->db->prepare('INSERT INTO  meal_course (course_name, course_type, time_to_prepare, 
+
+        $this->sql = $this->db->prepare('INSERT INTO  meal_course (course_name, prep_date, course_type, time_to_prepare, 
                                                                 course_notes, course_instructions, meal_cat_id) 
-                                    VALUES (:course_name, :course_type, :time_to_prepare,
+                                    VALUES (:course_name, :prep_date, :course_type, :time_to_prepare,
                                             :course_notes,:course_instructions, :meal_cat_id)');
         try {
             $this->db->beginTransaction();
-            if ($this->sql->execute(array(':course_name' => $data['rcpname'], ':course_type' => $data['mealcat'],
-                                            ':time_to_prepare' => $data['time_to_prepare'], ':course_notes' => $data['additional_notes'],
+            if ($this->sql->execute(array(':course_name' => $data['rcpname'], ':prep_date' => date('Y-m-d', time()), ':course_type' => $data['mealcat'],
+                                            ':time_to_prepare' => 10, ':course_notes' => $data['additional_notes'],
                                              ':course_instructions' => $data['rcp_instructions'],
-                                             ':meal_cat_id' => $mealCatID, ))) {
+                                             ':meal_cat_id' => $data['mealcat'], ))) {
                 $this->db->commit();
-                $message = 'Recipe for '.$recipeNAme.' created successfully.';
+                $message = 'Recipe for '.$data['rcpname'].' created successfully.';
                 Session::setFlash($message, 'success');
 
                 return true;
