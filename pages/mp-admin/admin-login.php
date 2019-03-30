@@ -11,7 +11,7 @@ if (isset($_POST['action'])) {
             echo $twig->render('mp-admin/admin-login.twig', array('page' => 'Admin Login', 'message' => Session::flash(), 'type' => $type, 'title' => 'Whoops..!'));
         } else {
             $product = new Products();
-            echo $twig->render('mp-admin/admin-home.twig', array('products' => $product->getAllMeals(),
+            echo $twig->render('mp-admin/admin-dashboard.twig', array('products' => $product->getAllMeals(),
                 'page' => 'My Account',
                 'message' => Session::flash(),
                 'type' => Session::flashType(),
