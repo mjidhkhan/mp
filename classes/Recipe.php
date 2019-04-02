@@ -71,9 +71,6 @@ class Recipe extends Model
             }
         }
 
-        //$this->result = $this->insertDataToRecipe($data);
-        //$this->result = $this->insertDataToContents($data, $filename);
-        //$this->result = $this->insertDataToMealCourse($data);
 
         // insert into contents database
         if ($this->result) {

@@ -60,4 +60,34 @@ class Stock extends Model
     public function checkFutureOrders()
     {
     }
+
+    /**
+     * Add new Stock Item
+     */
+    public function addItemInStock($data){
+        $this->sql = $this->db->prepare('INSERT INTO  ingredients (ingredient_name, quantity, 
+        reorder_level, notice_level, units) 
+        VALUES (:ingredient_name, :quantity, :reorder_level,:notice_level, :units)');
+            try {
+                $this->db->beginTransaction();
+                $this->sql->execute(array(':ingredient_name' => $data['item'.$index],
+                                    ':quantity' => $data['mealcat'],
+                                    ':reorder_level' => $data['qty_'.$index],
+                                    ':notice_level'=> $data[''],
+                                    ':units'=> $data[''] ));
+                $this->db->commit();
+                $this->result = $this->db->lastInsertId();
+                if ( $this->result > 0) {
+                    $message = $data['']. ' added successfully';
+                    Session::setFlash($message, 'success');
+                }
+
+            } catch (PDOException $e) {
+                $this->db->rollback();
+                $message = 'Error!: '.$e->getMessage().'</br>';
+                Session::setFlash($message, 'danger');
+
+                return false;
+            }
+    }
 }
