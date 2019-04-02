@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 31, 2019 at 11:15 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Host: 127.0.0.1
+-- Generation Time: Apr 02, 2019 at 04:54 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -91,7 +91,8 @@ INSERT INTO `ingredients` (`id`, `ingredient_name`, `quantity`, `reorder_level`,
 (27, 'Bay leaves', 100, 250, 300, 'g'),
 (28, 'Honey ', 1000, 250, 300, 'ml'),
 (29, 'Avocado', 500, 250, 300, 'g'),
-(30, 'Lime', 500, 250, 300, 'ml');
+(30, 'Lime', 500, 250, 300, 'ml'),
+(32, ' Cauliflower ', 5, 1, 1, 'kg');
 
 -- --------------------------------------------------------
 
@@ -273,15 +274,17 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `hashed_password` varchar(40) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(2) NOT NULL,
+  `image` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `status`) VALUES
-(2, 'admin', 'admin', 'admin@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1);
+INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `status`, `image`) VALUES
+(2, 'admin', 'admin', 'admin@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'male.png'),
+(5, 'customer', 'cust', 'cust@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, 'female.png');
 
 --
 -- Indexes for dumped tables
@@ -374,7 +377,7 @@ ALTER TABLE `contents`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `meal_category`
@@ -434,7 +437,7 @@ ALTER TABLE `servings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
