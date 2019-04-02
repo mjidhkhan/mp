@@ -244,12 +244,13 @@ span.round-tab:hover {
     font-weight: 400;
     font-style: normal;
 }
+
 .danger-stock {
     color: #dd4b39 !important;
-    
 }
-.warning-stock{
-color: #f39c12 !important;
+
+.warning-stock {
+    color: #f39c12 !important;
 }
 
 .default-stock {
@@ -257,5 +258,5 @@ color: #f39c12 !important;
 }
 
 .stock {
-    font-size: 2.5rem !important;
+    font-size: 1.2rem !important;
 }

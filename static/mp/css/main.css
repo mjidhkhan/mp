@@ -5,6 +5,11 @@
                 background: rgb(187, 185, 185);
             }
             
+            html {
+                font-size: 14px;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+            
             .alert {
                 border-radius: 0px;
                 margin-bottom: 0px;
@@ -77,7 +82,7 @@
             }
             
             .dropdown-menu {
-               /* background: #353434fb !important;*/
+                /* background: #353434fb !important;*/
                 border: 0px;
                 border-radius: 0px;
                 -webkit-border-radius: 0px;
@@ -174,8 +179,6 @@
                 background: #f6f8fa;
                 min-width: 50rem;
                 min-height: 50rem;
-                
-                
             }
             
             .login,
@@ -299,7 +302,7 @@
             .navbar-nav>li>a {
                 padding-top: 15px;
                 padding-bottom: 15px;
-                font-size: 1.8rem;
+                font-size: 1.1rem;
             }
             
             .main-header .logo {
@@ -357,15 +360,35 @@
                 color: #b3b3b3;
                 border-bottom: none;
             }
-
-            .detail-title{
+            
+            .detail-title {
                 font-size: 36px;
                 font-style: italic;
-                font-family: 'Titillium Web',sans-serif;
-            }
-            h1,h2,h3,h4,h5,h6 {
-                font-family: 'Titillium Web',
-                sans-serif;
+                font-family: 'Titillium Web', sans-serif;
             }
             
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'Titillium Web', sans-serif;
+            }
+            
+            .swal2-popup .swal2-content {
+                color: #545454;
+                font-size: 1.5em;
+                font-weight: 300;
+                line-height: normal;
+                word-wrap: break-word;
+            }
+            
+            .spacer-left {
+                margin-left: 10px;
+            }
+            
+            .spacer-right {
+                margin-right: 10px;
+            }
             /**  ************************** Form Wizard ********************************** **/

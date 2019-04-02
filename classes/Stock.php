@@ -65,20 +65,22 @@ class Stock extends Model
      * Add new Stock Item
      */
     public function addItemInStock($data){
+        
+        
         $this->sql = $this->db->prepare('INSERT INTO  ingredients (ingredient_name, quantity, 
         reorder_level, notice_level, units) 
         VALUES (:ingredient_name, :quantity, :reorder_level,:notice_level, :units)');
             try {
                 $this->db->beginTransaction();
-                $this->sql->execute(array(':ingredient_name' => $data['item'.$index],
-                                    ':quantity' => $data['mealcat'],
-                                    ':reorder_level' => $data['qty_'.$index],
-                                    ':notice_level'=> $data[''],
-                                    ':units'=> $data[''] ));
+                $this->sql->execute(array(':ingredient_name' => $data['item-name'],
+                                    ':quantity' => $data['item-quantity'],
+                                    ':reorder_level' => $data['reorder-level'],
+                                    ':notice_level'=> $data['notice-level'],
+                                    ':units'=> $data['item-unit'] ));
                 $this->db->commit();
                 $this->result = $this->db->lastInsertId();
                 if ( $this->result > 0) {
-                    $message = $data['']. ' added successfully';
+                    $message = $data['']. ' added successfully</br>';
                     Session::setFlash($message, 'success');
                 }
 
@@ -89,5 +91,22 @@ class Stock extends Model
 
                 return false;
             }
+    }
+
+    public function getStock(){
+        $this->sql = $this->db->prepare('SELECT * FROM ingredients');
+        $this->sql->execute();
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+       
+        return $this->result;
+    }
+
+    public function removeItemFromStock($data){
+        $this->sql = $this->db->prepare('DELETE  FROM ingredients WHERE id=:id');
+        $this->result = $this->sql->execute(array(':id'=>$data['id']));
+        return $this->result;
     }
 }

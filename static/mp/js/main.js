@@ -158,49 +158,11 @@ $("#fileupload").click(function(event) {
 
 $("#rcpForm").on('submit', function(e) {
     e.preventDefault();
-    /*var action = 'ADD_RECPIE'
-    var name = $('#rcpname').val()
-
-    var filename = $('#fileToUpload').val()
-    var path = document.getElementById("fileToUpload").value
-    console.log(path)
-    if (typeof path === 'undefined') {
-        alert(1)
-    }
-
-    var text = $('textarea#sd').val()
-
-    var qty = []
-    for (var i = 1; i <= 4; i++) {
-        qty.push($('#qty_' + [i]).val())
-    }
-
-    //qty.push($('#qty_2').val())
-    // qty.push($('#qty_3').val())
-    //qty.push($('#qty_4').val())
-
-    var data = { name, id, qty }
-        var request = $.ajax({
-             url: "admin-functions.php",
-             method: "POST",
-             data: {
-                 data: data,
-                 action: action,
-                 filename: filename,
-                 text: text,
-                 mealtype: mealtype,
-                 path: path,
-                 meatcat: mealcat,
-             }
-         });
-         request.done(function(msg) {
-             $("#log").html(msg);
-         });
-         */
+    e.stopImmediatePropagation();
 
     var d = new FormData(this)
     console.log(d)
-    e.preventDefault();
+
     $.ajax({
         type: 'POST',
         url: 'rcp_submit.php',
@@ -225,3 +187,94 @@ $("#rcpForm").on('submit', function(e) {
         }
     });
 });
+
+
+//add_newitem
+
+$("#add_newitem").on('submit', function(e) {
+    e.preventDefault();
+    // e.stopImmediatePropagation();
+    $.ajax({
+        type: 'POST',
+        url: 'admin-functions.php',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function() {
+            // $('#add_newitem').attr("disabled", "disabled");
+            // $('#add_newitem').css("opacity", ".5");
+        },
+        success: function(msg) {
+            var item = $('#item-name').val();
+            Swal.fire({
+                title: item,
+                text: "Added in stock successfully!",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    $('form').get(0).reset()
+                }
+            })
+        }
+    });
+    return false;
+});
+
+function updateStock() {
+
+}
+
+function deleteStock(name, id) {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success spacer-right',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false,
+    })
+
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't to delete " + name + " .",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'POST',
+                url: 'admin-functions.php',
+                data: { action: 'DELETE_ITEM', id: id },
+                success: function(msg) {
+                    if (msg == true) {
+                        $('#' + id).hide();
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+
+                },
+
+            })
+
+        } else if (
+            // Read more about handling dismissals
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'You have canceled the process.',
+                'error'
+            )
+        }
+    })
+}
