@@ -224,8 +224,14 @@ $("#add_newitem").on('submit', function(e) {
     return false;
 });
 
-function updateStock() {
+function updateStock(id) {
+    console.log('item-' + id)
 
+
+    $('tr' + id).find('item-' + id).each(function() {
+        var v = $('td').val()
+        console.log(v)
+    });
 }
 
 function deleteStock(name, id) {
@@ -278,3 +284,26 @@ function deleteStock(name, id) {
         }
     })
 }
+
+var switchToInputBox = function() {
+    var $input = $("<input>", {
+        val: $(this).text(),
+        type: "text"
+    });
+
+    $input.addClass("form-control");
+    $(this).replaceWith($input);
+    $input.on("blur", switchToTableCell);
+    $input.select();
+};
+var switchToTableCell = function() {
+    var $cell = $("<span>", {
+        text: $(this).val()
+
+    });
+    $cell.removeClass("form-control");
+    $(this).replaceWith($cell);
+
+    $cell.on("click", switchToInputBox);
+}
+$("td").on("click", switchToInputBox);
