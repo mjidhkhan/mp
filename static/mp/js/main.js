@@ -226,12 +226,17 @@ $("#add_newitem").on('submit', function(e) {
 
 function updateStock(id) {
     console.log('item-' + id)
-
-
-    $('tr' + id).find('item-' + id).each(function() {
-        var v = $('td').val()
-        console.log(v)
+var data=[];
+    $("#item-"+id).each(function() {
+       
+        var current_row = $(this);
+        data.push(current_row.find("td:eq(0)").text());
+        data.push(current_row.find("td:eq(1)").text());
+        data.push(current_row.find("td:eq(2)").text());
+        data.push(current_row.find("td:eq(3)").text());
+        data.push(current_row.find("td:eq(4)").text());
     });
+    console.log(data)
 }
 
 function deleteStock(name, id) {
@@ -288,7 +293,8 @@ function deleteStock(name, id) {
 var switchToInputBox = function() {
     var $input = $("<input>", {
         val: $(this).text(),
-        type: "text"
+        type: "text",
+        
     });
 
     $input.addClass("form-control");
@@ -297,13 +303,25 @@ var switchToInputBox = function() {
     $input.select();
 };
 var switchToTableCell = function() {
-    var $cell = $("<span>", {
+    var $cell = $("<td>", {
         text: $(this).val()
 
     });
     $cell.removeClass("form-control");
+    $cell.addClass("inpt-item");
     $(this).replaceWith($cell);
 
     $cell.on("click", switchToInputBox);
 }
-$("td").on("click", switchToInputBox);
+$(".mp-item").on("click", switchToInputBox);
+/*$("td").on("td propertychange", function(){
+    console.log('one')
+});
+
+var doUpdate = function(){
+    console.log('one');
+    alert(1)
+var v = $('input .inpt-item').val();
+console.log(v)
+}
+*/

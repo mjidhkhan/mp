@@ -24,7 +24,7 @@
            
                 <div class="box-body">
                 
-              <table id="items" class="table table-bordered table-striped">
+              <table id="stock-items" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                 
@@ -40,16 +40,16 @@
                 
                
                  {% for item in stock %}
-                 <tr>
+                 <tr id="item-{{item.id}}">
                  
-                  <td><span class="item">{{item.ingredient_name}}</span></td>
-                  <td><span  class="item">{{item.quantity}}</span></td>
-                  <td><span  class="item">{{item.reorder_level}}</span></td>
-                  <td><span  class="item">{{item.notice_level}}</span></td>
-                  <td><span  class="item">{{item.units}}</span></td>
+                  <td class="mp-item">{{item.ingredient_name}}</td>
+                  <td class="mp-item">{{item.quantity}}</td>
+                  <td class="mp-item">{{item.reorder_level}}</td>
+                  <td class="mp-item">{{item.notice_level}}</td>
+                  <td class="mp-item">{{item.units}}</td>
                   <td>
                   <button type="button" class="btn  btn-small btn-primary" onclick="updateStock( {{item.id}})"><i class="fa fa-edit"></i></button>
-                  <button type="button" class="btn  btn-small btn-danger" onclick="deleteStock(`{{item.ingredient_name}}`, {{item.id}})"><i class="fa fa-trash"></i></button>
+                  <!--button type="button" class="btn  btn-small btn-danger" onclick="deleteStock(`{{item.ingredient_name}}`, {{item.id}})"><i class="fa fa-trash"></i></button-->
                   
                   </td>
                  </tr>
@@ -74,7 +74,7 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-                    <button type="submit"  id="add_newitem" class="btn btn-primary">Submit</button>
+                    <h4>MP Stock</h4>
                 </div>
            
             </div>
