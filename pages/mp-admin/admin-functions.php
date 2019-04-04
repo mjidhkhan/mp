@@ -61,12 +61,6 @@ function processUpdateStockItems($data){
 function newStaffMember($data){
 	$user = new User();
 print_r($data);
-
-
-
-
-		
-	
 	if (Session::get('status') == 1 ) {
 		if (!empty($_FILES['file']['type'])) {
 			$fileName = time().'_'.$_FILES['file']['name'];
@@ -74,12 +68,8 @@ print_r($data);
 			$targetPath = '../../static/mp/images/user/'.$fileName;
 			$fileType = $_FILES['file']['type'];
 			$user->fileUpload($fileName, $sourcePath, $targetPath, $fileType);
-			//echo $user->RegisterUser($data, $fileName);
-			
-		} else {
-			echo 'ERROR';
-		}
-		
+			echo $user->RegisterUser($data, $fileName);
+		} 
 	}else{
 		echo false;
 	}

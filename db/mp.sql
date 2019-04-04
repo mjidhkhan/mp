@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2019 at 04:54 PM
+-- Generation Time: Apr 04, 2019 at 05:57 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -44,6 +44,26 @@ CREATE TABLE `contents` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `designation`
+--
+
+DROP TABLE IF EXISTS `designation`;
+CREATE TABLE `designation` (
+  `id` int(11) NOT NULL,
+  `designation` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `designation`
+--
+
+INSERT INTO `designation` (`id`, `designation`) VALUES
+(1, 'Manager'),
+(2, 'Supervisor');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ingredients`
 --
 
@@ -69,7 +89,7 @@ INSERT INTO `ingredients` (`id`, `ingredient_name`, `quantity`, `reorder_level`,
 (5, 'Lettuce', 250, 250, 300, 'g'),
 (6, 'Carrots', 270, 250, 300, 'g'),
 (7, 'Potato', 1500, 250, 300, 'g'),
-(8, 'Apples ', 388, 250, 300, 'g'),
+(8, 'Apples', 388, 250, 300, 'g'),
 (9, 'Chicken  ', 9150, 250, 300, 'g'),
 (10, 'Blackbeans', 300, 250, 300, 'g'),
 (11, 'Beef', 3900, 250, 300, 'g'),
@@ -92,7 +112,7 @@ INSERT INTO `ingredients` (`id`, `ingredient_name`, `quantity`, `reorder_level`,
 (28, 'Honey ', 1000, 250, 300, 'ml'),
 (29, 'Avocado', 500, 250, 300, 'g'),
 (30, 'Lime', 500, 250, 300, 'ml'),
-(32, ' Cauliflower ', 5, 1, 1, 'kg');
+(32, ' Cauliflower ', 20, 1, 1, 'kg');
 
 -- --------------------------------------------------------
 
@@ -283,8 +303,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `status`, `image`) VALUES
-(2, 'admin', 'admin', 'admin@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'male.png'),
-(5, 'customer', 'cust', 'cust@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, 'female.png');
+(5, 'customer', 'cust', 'cust@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, 'female.png'),
+(2, 'admin', 'admin', 'admin@mp.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, 'male.png');
 
 --
 -- Indexes for dumped tables
@@ -294,6 +314,12 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `
 -- Indexes for table `contents`
 --
 ALTER TABLE `contents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `designation`
+--
+ALTER TABLE `designation`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -374,6 +400,12 @@ ALTER TABLE `contents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `designation`
+--
+ALTER TABLE `designation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
@@ -437,7 +469,7 @@ ALTER TABLE `servings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -115,7 +115,7 @@ class User extends Model
         return $this->result;
     }
 
-    public function RegisterUser($data)
+    public function RegisterUser($data, $filename)
     {
         //echo print_r($data);
 
@@ -124,14 +124,19 @@ class User extends Model
         $password = trim($data['password']);
         $repeatpassword = trim($data['cpassword']);
         $email = trim($data['email']);
-        $status = 2;
+        if(array_key_exists('designation', $data)){
+            $status =trim($data['designation']);
+        }else{
+            $status = 3;
+        }
+       
         if ($username && $fullname && $password && $repeatpassword && $email) {
             if ($password == $repeatpassword) {
                 $hashed_password = sha1($password);
                 if ($this->UsernameLengthIsOK($username) &&
                     $this->PasswordLengthIsOK($password) &&
                     $this->UsernameIsOK($username)) {
-                    $this->CreateNewUser($username, $hashed_password, $email, $status);
+                    $this->CreateNewUser($fullname,$username, $hashed_password, $email, $status, $filename);
                 }
             } else {
                 $message = 'Password donot match';
@@ -182,15 +187,15 @@ class User extends Model
         return $this->result;
     }
 
-    private function CreateNewUser($username, $hashed_password, $email, $status)
+    private function CreateNewUser($fullname, $username, $hashed_password, $email, $status, $filename)
     {
-        $this->sql = $this->db->prepare('INSERT INTO  users (fullname, username, email, hashed_password, status) 
-                                    VALUES (:fullname, :username, :email, :hashed_password, :status)');
+        $this->sql = $this->db->prepare('INSERT INTO  users (fullname, username, email, hashed_password, status,image) 
+                                    VALUES (:fullname, :username, :email, :hashed_password, :status, :image)');
         try {
             $this->db->beginTransaction();
             $this->sql->execute(array(':fullname' => $fullname, ':username' => $username,
                                     ':email' => $email, ':hashed_password' => $hashed_password,
-                                    ':status' => $status, ));
+                                    ':status' => $status,  ':image' => $filename, ));
             $this->db->commit();
             $message = 'User Created. Please go to login page.';
             Session::setFlash($message, 'success');
