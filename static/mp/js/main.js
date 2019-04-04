@@ -403,7 +403,7 @@ $("#staffForm").on('submit', function(e) {
             var item = $('#item-name').val();
             Swal.fire({
                 title: item,
-                text: "Added in stock successfully!",
+                text: "Staff member added successfully!",
                 type: 'success',
                 showCancelButton: false,
                 confirmButtonColor: '#3085d6',
