@@ -124,7 +124,7 @@ class Stock extends Model
 
     public function getOutOfStock(){
 
-        $this->sql = $this->db->prepare('SELECT * FROM ingredients WHERE quantity <=  10');
+        $this->sql = $this->db->prepare('SELECT * FROM ingredients WHERE quantity < reorder_level');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {
