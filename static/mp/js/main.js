@@ -316,7 +316,7 @@ var switchToInputBox = function() {
         });
         $input.addClass("form-control");
         $(this).replaceWith($input);
-        $input.on("mousemove", switchToTableCell);
+        $input.on("mouseleave", switchToTableCell);
         $('#btn-' + ID).removeClass('fa-edit');
         $('#type-' + ID).removeClass('btn-warning');
         $('#type-' + ID).addClass('btn-success');
