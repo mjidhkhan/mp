@@ -259,11 +259,8 @@ function deleteStock(name, id) {
                             'success'
                         )
                     }
-
                 },
-
             })
-
         } else if (
             // Read more about handling dismissals
             result.dismiss === Swal.DismissReason.cancel
@@ -319,7 +316,7 @@ var switchToInputBox = function() {
         });
         $input.addClass("form-control");
         $(this).replaceWith($input);
-        $input.on("blur", switchToTableCell);
+        $input.on("mousemove", switchToTableCell);
         $('#btn-' + ID).removeClass('fa-edit');
         $('#type-' + ID).removeClass('btn-warning');
         $('#type-' + ID).addClass('btn-success');
@@ -344,6 +341,12 @@ var switchToTableCell = function() {
 //$(".mp-item").on("click", switchToInputBox);
 
 
+/**
+ * 
+ * @param {array} data 
+ * @param {int} id 
+ */
+
 function processUpdate(data, id) {
     console.log(data)
 
@@ -353,15 +356,64 @@ function processUpdate(data, id) {
         data: { action: 'UPDATE_ITEM', data: data, id: id },
         success: function(msg) {
             if (msg == true) {
-                $('#' + id).hide();
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                Swal.fire({
+                    title: data[0],
+                    text: "Stock updated successfully!",
+                    type: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        $('form').get(0).reset()
+                    }
+                })
             }
 
         },
 
     })
+    $('#type-' + id).addClass('btn-primary');
+    $('#type-' + id).removeClass('btn-success');
+    $('#btn-' + ID).removeClass('fa-save');
+    $('#btn-' + ID).addClass('fa-edit');
+    ID = null;
+    item = null;
 }
+
+
+// STAF RELATED FUNCTIONS
+
+
+$("#staffForm").on('submit', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $.ajax({
+        type: 'POST',
+        url: 'admin-functions.php',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false,
+        beforeSend: function() {
+            // $('#add_newitem').attr("disabled", "disabled");
+            // $('#add_newitem').css("opacity", ".5");
+        },
+        success: function(msg) {
+            var item = $('#item-name').val();
+            Swal.fire({
+                title: item,
+                text: "Added in stock successfully!",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    $('form').get(0).reset()
+                }
+            })
+        }
+    });
+    return false;
+});

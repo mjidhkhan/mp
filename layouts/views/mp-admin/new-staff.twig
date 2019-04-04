@@ -1,0 +1,92 @@
+{% extends 'mp-admin/_admin-layout.twig' %}
+{% block title %}
+	<section class="text-center">
+    <div class="title">
+      <h1 class="jumbotron-heading">{{ page }}</h1>
+      <p class="lead ">{{ slogon }}</p>
+      
+    </div>
+  </section>
+{% endblock %}
+{% block content %}
+
+
+
+<div class="row">
+ 
+    <section class="col-lg-7">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <form enctype="multipart/form-data" id="staffForm" role="form">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add New Staff Member</h3>
+                    </div>
+                    
+                    <!-- left column -->
+                    <div class="box-body">
+                        <fieldset class=" col-md-12 scheduler-border">
+                        <legend class="scheduler-border">Staff Member Details</legend>
+                        <div class="col-md-12 Amberform-group">
+                            <label for="empName">Employee Full Name</label>
+                            <input type="text" class="form-control" id="empName"  name="empName" placeholder="Enter name"  required >
+                            <br>
+                        </div>
+                        <div class="col-md-12 Amberform-group">
+                            <label for="empUname">Employee Username</label>
+                            <input type="text" class="form-control" id="empUname"  name="empUname" placeholder="Enter username"  required >
+                            <br>
+                        </div>
+                        <div class="col-md-12 Amberform-group">
+                            <label for="empEmail">Employee Email</label>
+                            <input type="text" class="form-control" id="empEmail"  name="empEmail" placeholder="Enter email"  required >
+                            <br>
+                        </div>
+                        <div class="col-md-12 Amberform-group">
+                            <label for="empPass">Employee password</label>
+                            <input type="password" class="form-control" id="empPass"  name="empPass" placeholder="Enter password"  required >
+                            <br>
+                        </div>
+                         <input type="hidden" hidden class="form-control"  name="action" value="NEW_STAFF">
+                        
+
+                            <div class="col-md-12 form-group">
+                                <label>Employee photo to upload</label>
+                                <input id="fileToUpload" class="form-control" type="file" name="file" required >
+                            </div>
+                        </fieldset>
+                            <h3>Upload Recipe Image and Submit form</h3>
+                            <p>If you have any problem check you filled all fields.</p>
+                            
+                    </div>
+                    <div class="box-footer">
+                        <p class="pull-left">Copyright © 2019-2021 All In One  </p>
+                            <button type="submit" id="new_staff" class="btn btn-primary pull-right">Submit</button>
+                    </div>
+                </div>
+        
+            </form>
+        </div>
+    </section>
+    
+    <section class="col-lg-5">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Staff Members</h3>
+                </div>
+                <div class="box-body">
+                    <div class="box-footer">
+                        <h4>Staff area </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<!-- /.row -->
+
+{% endblock %}
+ 
+

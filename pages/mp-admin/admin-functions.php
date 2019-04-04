@@ -19,17 +19,23 @@ if(isset($_POST['action'])){
 		case "UPDATE_ITEM":
 				processUpdateStockItems($data);
 			break;
+		case "NEW_STAFF":
+				newStaffMember($data);
+			break;
 	}
 }else{
 
 }
+
+
+
+// STOCK RELATED FUNCTIONS
 
 function processAddNewItem($data){
 	$stock = new Stock();
 	if (Session::get('status') == 1 || Session::get('status') == 2 ) {
 		echo $stock->addItemInStock($data);
 	}
-
 }
 
 function processDeleteStockItem($data){
@@ -48,6 +54,12 @@ function processUpdateStockItems($data){
 	}else{
 		echo false;
 	}
+}
+
+// STAFF RELATED FUNCTIONS
+
+function newStaffMember($data){
+	print_r($data);
 }
 
 

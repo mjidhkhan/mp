@@ -121,4 +121,17 @@ class Stock extends Model
 
         return $this->result;
     }
+
+    public function getOutOfStock(){
+
+        $this->sql = $this->db->prepare('SELECT * FROM ingredients WHERE quantity <=  10');
+        $this->sql->execute();
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+       
+        return $this->result;
+
+    }
 }
