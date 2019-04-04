@@ -59,7 +59,14 @@ function processUpdateStockItems($data){
 // STAFF RELATED FUNCTIONS
 
 function newStaffMember($data){
-	print_r($data);
+	$staff = new Staff();
+	if (Session::get('status') == 1 ) {
+		echo $staff->newStaffMember($data);
+	}else{
+		echo false;
+	}
+	
+
 }
 
 

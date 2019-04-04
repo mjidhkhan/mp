@@ -105,6 +105,16 @@ class User extends Model
         return $this->result;
     }
 
+    public function getDesignation(){
+        $this->sql = $this->db->prepare('SELECT * FROM designation');
+        $this->sql->execute();
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+        return $this->result;
+    }
+
     public function RegisterUser($data)
     {
         //echo print_r($data);
