@@ -13,9 +13,9 @@
 
 
 <div class="row">
- 
     <section class="col-lg-7">
         <div class="col-md-12">
+
             <!-- general form elements -->
             <form enctype="multipart/form-data" id="staffForm" role="form">
             
@@ -26,60 +26,56 @@
                    
                     <!-- left column -->
                     <div class="box-body">
-                     
                         <fieldset class=" col-md-12 scheduler-border">
-                        <legend class="scheduler-border">Staff Member Details</legend>
+                            <legend class="scheduler-border">Staff Member Details</legend>
+                            
+                            <div class="col-md-6"> 
                         
-                        <div class="col-md-6"> 
-                       
-                            <div class="col-md-12 Amberform-group">
-                                <label for="empName">Employee Full Name</label>
-                                <input type="text" class="form-control" id="empName"  name="empName" placeholder="Enter name"  required >
-                                <br>
+                                <div class="col-md-12 Amberform-group">
+                                    <label for="empName">Employee Full Name</label>
+                                    <input type="text" class="form-control" id="fullname"  name="fullname" placeholder="Enter name"  required >
+                                    <br>
+                                </div>
+                                <div class="col-md-12 Amberform-group">
+                                    <label for="empUname">Employee Username</label>
+                                    <input type="text" class="form-control" id="username"  name="username" placeholder="Enter username"  required >
+                                    <br>
+                                </div>
+                                <div class="col-md-12 Amberform-group">
+                                    <label for="empEmail">Employee Email</label>
+                                    <input type="text" class="form-control" id="email"  name="email" placeholder="Enter email"  required >
+                                    <br>
+                                </div>
                             </div>
-                            <div class="col-md-12 Amberform-group">
-                                <label for="empUname">Employee Username</label>
-                                <input type="text" class="form-control" id="empUname"  name="empUname" placeholder="Enter username"  required >
-                                <br>
+                            <div class="col-md-6">
+                                <div class="col-md-12 Amberform-group">
+                                    <label for="empPass">Employee password</label>
+                                    <input type="password" class="form-control" id="password"  name="password" placeholder="Enter password"  required >
+                                    <br>
+                                </div>
+                                <div class="col-md-12 Amberform-group">
+                                    <label for="empPass">Confirm password</label>
+                                    <input type="password" class="form-control" name ='cpassword' placeholder="Retype password">
+                                    <br>
+                                </div>
+                                <div class="col-md-12  form-group">
+                                        <label for="ingredients">Designation</label>
+                                        <select class="form-control" id="designation"  name="designation"required>
+                                            <option value="0">Select Designation</option>
+                                            {% for type in types %}
+                                                <option value="{{ type.id }}">{{ type.designation }}</option>
+                                            {% endfor %}
+                                        </select>
+                                </div>
+                                <input type="hidden" hidden class="form-control"  name="action" value="NEW_STAFF">
                             </div>
-                            <div class="col-md-12 Amberform-group">
-                                <label for="empEmail">Employee Email</label>
-                                <input type="text" class="form-control" id="empEmail"  name="empEmail" placeholder="Enter email"  required >
-                                <br>
-                            </div>
-                        </div>
-                    <div class="col-md-6">
-                        <div class="col-md-12 Amberform-group">
-                            <label for="empPass">Employee password</label>
-                            <input type="password" class="form-control" id="empPass"  name="empPass" placeholder="Enter password"  required >
-                            <br>
-                        </div>
-                        <div class="col-md-12 Amberform-group">
-                             <label for="empPass">Confirm password</label>
-                            <input type="password" class="form-control" name ='cpassword' placeholder="Retype password">
-                            <br>
-                        </div>
-                        <div class="col-md-12  form-group">
-                                <label for="ingredients">Designation</label>
-                                <select class="form-control" id="item1"  name="item1"required>
-                                    <option value="0">Select Designation</option>
-                                    {% for type in types %}
-                                        <option value="{{ type.id }}">{{ type.designation }}</option>
-                                    {% endfor %}
-                                </select>
-                        </div>
-                         <input type="hidden" hidden class="form-control"  name="action" value="NEW_STAFF">
-                    </div>
-                     <div class="col-md-12">
-                        <div class="col-md-12 form-group">
-                            <label>Employee photo to upload</label>
-                            <input id="fileToUpload" class="form-control" type="file" name="file" required >
-                    </div>   
+                            <div class="col-md-12">
+                                <div class="col-md-12 form-group">
+                                    <label>Employee photo to upload</label>
+                                    <input id="fileToUpload" class="form-control" type="file" name="file" required >
+                            </div>   
                         </fieldset>
-                            <h3>Upload Recipe Image and Submit form</h3>
-                            <p>If you have any problem check you filled all fields.</p>
                     </div>
-                </div>
                     <div class="box-footer">
                         <p class="pull-left">Copyright © 2019-2021 All In One  </p>
                             <button type="submit" id="new_staff" class="btn btn-primary pull-right">Submit</button>
