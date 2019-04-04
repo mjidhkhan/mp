@@ -16,7 +16,7 @@ if(isset($_POST['action'])){
 		case "DELETE_ITEM":
 			processDeleteStockItem($data);
 			break;
-		case "pastel":
+		case "UPDATE_ITEM":
 			echo "i es un pastel";
 			break;
 	}
@@ -41,5 +41,13 @@ function processDeleteStockItem($data){
 	 }
 }
 
+function processUpdateStockItems($data){
+	$stock = new Stock();
+	if($stock->updateInStockItems($data)> 0){
+		echo true;
+	}else{
+		echo false;
+	}
+}
 
 
