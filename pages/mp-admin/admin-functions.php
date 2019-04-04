@@ -4,7 +4,6 @@ require_once dirname(__DIR__).'../../pages/views.php';
 if(isset($_POST['action'])){
 	
 
-
 	$data = $_POST;
 	$action = $_POST['action'];
 
@@ -18,6 +17,7 @@ if(isset($_POST['action'])){
 			break;
 		case "UPDATE_ITEM":
 				processUpdateStockItems($data);
+
 			break;
 		case "NEW_STAFF":
 				newStaffMember($data);
@@ -61,9 +61,25 @@ function processUpdateStockItems($data){
 function newStaffMember($data){
 	$user = new User();
 print_r($data);
-	return;
+
+
+
+
+		
+	
 	if (Session::get('status') == 1 ) {
-		echo $user->RegisterUser($data);
+		if (!empty($_FILES['file']['type'])) {
+			$fileName = time().'_'.$_FILES['file']['name'];
+			$sourcePath = $_FILES['file']['tmp_name'];
+			$targetPath = '../../static/mp/images/user/'.$fileName;
+			$fileType = $_FILES['file']['type'];
+			$user->fileUpload($fileName, $sourcePath, $targetPath, $fileType);
+			//echo $user->RegisterUser($data, $fileName);
+			
+		} else {
+			echo 'ERROR';
+		}
+		
 	}else{
 		echo false;
 	}
