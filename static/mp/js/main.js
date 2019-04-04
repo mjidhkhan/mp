@@ -302,7 +302,7 @@ function updateStock(id) {
         });
 
         // do update 
-        processUpdate(data)
+        processUpdate(data, id)
 
     }
 }
@@ -344,13 +344,13 @@ var switchToTableCell = function() {
 //$(".mp-item").on("click", switchToInputBox);
 
 
-function processUpdate(data) {
+function processUpdate(data, id) {
     console.log(data)
 
     $.ajax({
         type: 'POST',
         url: 'admin-functions.php',
-        data: { action: 'UPDATE_ITEM', data: data },
+        data: { action: 'UPDATE_ITEM', data: data, id: id },
         success: function(msg) {
             if (msg == true) {
                 $('#' + id).hide();

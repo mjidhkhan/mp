@@ -109,4 +109,16 @@ class Stock extends Model
         $this->result = $this->sql->execute(array(':id'=>$data['id']));
         return $this->result;
     }
+
+    public function updateInStockItems($data){
+        
+        $this->sql = $this->db->prepare('UPDATE  ingredients  SET ingredient_name=:ingredient_name, 
+        quantity=:quantity, reorder_level=:reorder_level, 
+        notice_level=:notice_level, units=:units WHERE id=:id');
+        $this->result = $this->sql->execute(array(':id'=>$data['id'], ':ingredient_name'=>$data['data'][0],  ':quantity'=>$data['data'][1],
+                                                  ':reorder_level'=>$data['data'][2], ':notice_level'=>$data['data'][3], 
+                                                  ':units'=>$data['data'][4]));
+
+        return $this->result;
+    }
 }

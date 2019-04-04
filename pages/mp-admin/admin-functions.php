@@ -14,10 +14,10 @@ if(isset($_POST['action'])){
 				processAddNewItem($data);
 			break;
 		case "DELETE_ITEM":
-			processDeleteStockItem($data);
+				processDeleteStockItem($data);
 			break;
 		case "UPDATE_ITEM":
-			echo "i es un pastel";
+				processUpdateStockItems($data);
 			break;
 	}
 }else{
