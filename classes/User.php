@@ -47,6 +47,7 @@ class User extends Model
                     Session::set('status', $row['status']);
                     Session::set('username', $row['username']);
                     Session::set('fullname', $row['fullname']);
+                    Session::set('user-image', $row['image']);
                     if ($row['status'] == 1) { // member of staff admin redirect to admin area
                         Session::set('admin', $row['email']);
                         $this->result = 'pages/admin/index.php';
