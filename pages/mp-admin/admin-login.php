@@ -22,8 +22,10 @@ if (isset($_POST['action'])) {
                 'subtitle' => 'Control panel',
                 'message' => Session::flash(),
                 'type' => Session::flashType(),
-                'title' => 'Success..!', 'path' => IMAGES,
+                'title' => 'Success..!', 
+                 'path' => IMAGES,
                 'fullname' => Session::get('fullname'),
+                'image'=>Session::get('user-image'),
               
                 'outofstock' => sizeof($outof_stock),
                 'lowstock' => sizeof($low_stock),
