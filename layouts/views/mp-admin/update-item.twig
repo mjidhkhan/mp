@@ -48,7 +48,7 @@
                   <td class="mp-item">{{item.notice_level}}</td>
                   <td class="mp-item">{{item.units}}</td>
                   <td>
-                  <button type="button" class="btn  btn-small btn-primary" onclick="updateStock( {{item.id}})"><i class="fa fa-edit"></i></button>
+                  <button type="button" id="type-{{item.id}}" class="btn  btn-small btn-primary edit" onclick="updateStock( {{item.id}})"><i id="btn-{{item.id}}"  class="fa fa-edit"></i></button>
                   <!--button type="button" class="btn  btn-small btn-danger" onclick="deleteStock(`{{item.ingredient_name}}`, {{item.id}})"><i class="fa fa-trash"></i></button-->
                   
                   </td>

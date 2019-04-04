@@ -224,20 +224,7 @@ $("#add_newitem").on('submit', function(e) {
     return false;
 });
 
-function updateStock(id) {
-    console.log('item-' + id)
-var data=[];
-    $("#item-"+id).each(function() {
-       
-        var current_row = $(this);
-        data.push(current_row.find("td:eq(0)").text());
-        data.push(current_row.find("td:eq(1)").text());
-        data.push(current_row.find("td:eq(2)").text());
-        data.push(current_row.find("td:eq(3)").text());
-        data.push(current_row.find("td:eq(4)").text());
-    });
-    console.log(data)
-}
+
 
 function deleteStock(name, id) {
 
@@ -290,22 +277,62 @@ function deleteStock(name, id) {
     })
 }
 
-var switchToInputBox = function() {
-    var $input = $("<input>", {
-        val: $(this).text(),
-        type: "text",
-        
-    });
+var ID = null;
+var item = null;
 
-    $input.addClass("form-control");
-    $(this).replaceWith($input);
-    $input.on("blur", switchToTableCell);
-    $input.select();
+function updateStock(id) {
+    ID = id;
+    item = "item-" + id;
+    if ($('#btn-' + id).hasClass('fa-edit')) {
+        $('#type-' + id).removeClass('btn-primary');
+        $('#type-' + id).addClass('btn-warning');
+        $(".mp-item").on("click", switchToInputBox);
+        console.log('yes - ' + ID)
+    } else {
+        console.log('item-' + id)
+        var data = [];
+        $("#item-" + id).each(function() {
+
+            var current_row = $(this);
+            data.push(current_row.find("td:eq(0)").text());
+            data.push(current_row.find("td:eq(1)").text());
+            data.push(current_row.find("td:eq(2)").text());
+            data.push(current_row.find("td:eq(3)").text());
+            data.push(current_row.find("td:eq(4)").text());
+        });
+
+        // do update 
+        processUpdate(data)
+
+    }
+}
+
+/**
+ * Switch table cell to input box.
+ */
+var switchToInputBox = function() {
+    var itemID = $(this).closest('tr').attr('id');
+    if (itemID == item) {
+        var $input = $("<input>", {
+            val: $(this).text(),
+            type: "text",
+        });
+        $input.addClass("form-control");
+        $(this).replaceWith($input);
+        $input.on("blur", switchToTableCell);
+        $('#btn-' + ID).removeClass('fa-edit');
+        $('#type-' + ID).removeClass('btn-warning');
+        $('#type-' + ID).addClass('btn-success');
+        $('#btn-' + ID).addClass('fa-save');
+        $input.select();
+    }
 };
+/**
+ * Switch back to table cell
+ */
 var switchToTableCell = function() {
     var $cell = $("<td>", {
         text: $(this).val()
-
     });
     $cell.removeClass("form-control");
     $cell.addClass("inpt-item");
@@ -313,15 +340,28 @@ var switchToTableCell = function() {
 
     $cell.on("click", switchToInputBox);
 }
-$(".mp-item").on("click", switchToInputBox);
-/*$("td").on("td propertychange", function(){
-    console.log('one')
-});
 
-var doUpdate = function(){
-    console.log('one');
-    alert(1)
-var v = $('input .inpt-item').val();
-console.log(v)
+//$(".mp-item").on("click", switchToInputBox);
+
+
+function processUpdate(data) {
+    console.log(data)
+
+    $.ajax({
+        type: 'POST',
+        url: 'admin-functions.php',
+        data: { action: 'UPDATE_ITEM', data: data },
+        success: function(msg) {
+            if (msg == true) {
+                $('#' + id).hide();
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+
+        },
+
+    })
 }
-*/
