@@ -148,9 +148,6 @@ class Recipe extends Model
             }
         } catch (PDOException $e) {
             $this->db->rollback();
-            $message = 'Error!: '.$e->getMessage().'</br>';
-            Session::setFlash($message, 'danger');
-
             return false;
         }
     }
@@ -170,16 +167,10 @@ class Recipe extends Model
                                              ':course_instructions' => $data['rcp_instructions'],
                                              ':course_image' =>  $filename, ))) {
                 $this->db->commit();
-                $message = 'Recipe for '.$data['rcpname'].' created successfully.';
-                Session::setFlash($message, 'success');
-
                 return true;
             }
         } catch (PDOException $e) {
             $this->db->rollback();
-            $message = 'Error!: '.$e->getMessage().'</br>';
-            Session::setFlash($message, 'danger');
-
             return false;
         }
     }
