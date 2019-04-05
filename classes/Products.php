@@ -63,14 +63,20 @@ class Products extends Model
     public function getAllVegetarianMains()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=2 AND m_cat_id= 1 AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id =  :ID');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` WHERE visible = 1  AND m_cat_id = 1 AND m_type_id = 2');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
