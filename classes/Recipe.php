@@ -118,7 +118,7 @@ class Recipe extends Model
             $this->result = $this->sql->fetchAll();
         }
 
-        if ($qtyUsed > $this->result[0]['reorder_level']) {
+        if ($qtyUsed < $this->result[0]['reorder_level']) {
             $this->qtyInstock = ($this->result[0]['quantity']) - $qtyUsed;
             $this->sql = $this->db->prepare('UPDATE ingredients SET quantity=:quantity WHERE id=:id');
             $this->sql->execute(array(':quantity' => $this->qtyInstock, ':id' => $itemID));
