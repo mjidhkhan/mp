@@ -12,8 +12,7 @@ class Products extends Model
 
     public function getAllMeals()
     {
-        $this->sql = $this->db->prepare('SELECT DISTINCT course_name, course_notes, course_instructions,contents.id, description,image 
-FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
+        $this->sql = $this->db->prepare('SELECT * FROM course_details');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {
@@ -39,18 +38,22 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     public function getAllVegetarianStarters()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=1 AND m_cat_id= 1 AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   WHERE meal_course.meal_type =1 AND meal_course.meal_cat_id= 1');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_cat_id= 1 AND m_type_id=1');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+                                                    WHERE meal_course.meal_type = 1 
+                                                    AND meal_course.meal_cat_id = 1 
+                                                    AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
+              
             }
         }
 
@@ -83,7 +86,10 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     /** Non Vegetarian Meals Start */
     public function getAllNonVegetarian()
     {
-        $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_cat_id= 2');
+        $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+                                         WHERE meal_course.meal_type = 1 
+                                         AND meal_course.meal_cat_id = 2 
+                                         AND meal_course.id = course_details.course_id ');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {
@@ -96,14 +102,20 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     public function getAllNonVegetarianStarters()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=1 AND m_cat_id= 2 AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = :ID ');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_cat_id= 2 AND m_type_id=1');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -117,14 +129,20 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     public function getAllNonVegetarianMains()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=2 AND m_cat_id= 2 AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 2 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = :ID ');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` WHERE visible = 1  AND m_cat_id = 2 AND m_type_id = 2');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 2 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -139,14 +157,20 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     public function getAllDeserts()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=3  AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = :ID');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=3');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -160,14 +184,20 @@ FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
     public function getAllRefreshments()
     {
         if (ID != '' || ID != null) {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=4  AND id=:ID');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id =  :ID');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
                 $this->result = $this->sql->fetchAll();
             }
         } else {
-            $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_type_id=4');
+            $this->sql = $this->db->prepare('SELECT * FROM  meal_course,course_details   
+            WHERE meal_course.meal_type = 1 
+            AND meal_course.meal_cat_id = 2 
+            AND meal_course.id = course_details.course_id ');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {

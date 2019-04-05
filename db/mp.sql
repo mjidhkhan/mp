@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 05:57 PM
+-- Generation Time: Apr 05, 2019 at 03:39 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -27,19 +27,31 @@ USE `mp`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- Table structure for table `course_details`
 --
 
-DROP TABLE IF EXISTS `contents`;
-CREATE TABLE `contents` (
-  `id` int(11) NOT NULL,
-  `title` varchar(250) NOT NULL,
-  `visible` tinyint(1) NOT NULL,
-  `m_cat_id` int(11) NOT NULL,
-  `m_type_id` int(11) NOT NULL,
-  `description` longtext NOT NULL,
-  `image` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `course_details`;
+CREATE TABLE `course_details` (
+  `course_id` int(11) NOT NULL,
+  `course_name` varchar(250) NOT NULL,
+  `course_prep_date` date NOT NULL,
+  `course_prep_time` int(11) NOT NULL,
+  `course_description` text NOT NULL,
+  `course_notes` text NOT NULL,
+  `course_instructions` text NOT NULL,
+  `course_image` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `course_details`:
+--
+
+--
+-- Dumping data for table `course_details`
+--
+
+INSERT INTO `course_details` (`course_id`, `course_name`, `course_prep_date`, `course_prep_time`, `course_description`, `course_notes`, `course_instructions`, `course_image`) VALUES
+(42, 'Starter On The Go Veg', '2019-04-05', 10, 'Another recpie', 'Keep fire low', 'Cook for 30 minutes', '1554464594_s3-1-500x500.jpg');
 
 -- --------------------------------------------------------
 
@@ -52,6 +64,10 @@ CREATE TABLE `designation` (
   `id` int(11) NOT NULL,
   `designation` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `designation`:
+--
 
 --
 -- Dumping data for table `designation`
@@ -78,6 +94,10 @@ CREATE TABLE `ingredients` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
+-- RELATIONSHIPS FOR TABLE `ingredients`:
+--
+
+--
 -- Dumping data for table `ingredients`
 --
 
@@ -90,8 +110,8 @@ INSERT INTO `ingredients` (`id`, `ingredient_name`, `quantity`, `reorder_level`,
 (6, 'Carrots', 270, 250, 300, 'g'),
 (7, 'Potato', 1500, 250, 300, 'g'),
 (8, 'Apples', 388, 250, 300, 'g'),
-(9, 'Chicken  ', 9150, 250, 300, 'g'),
-(10, 'Blackbeans', 300, 250, 300, 'g'),
+(9, 'Chicken  ', -500, 250, 300, 'g'),
+(10, 'Blackbeans', 301, 250, 300, 'g'),
 (11, 'Beef', 3900, 250, 300, 'g'),
 (12, 'Shrimp', 1000, 250, 300, 'g'),
 (13, 'Salmon', 1744, 250, 300, 'g'),
@@ -106,13 +126,13 @@ INSERT INTO `ingredients` (`id`, `ingredient_name`, `quantity`, `reorder_level`,
 (22, 'Cayenne pepper', 200, 250, 300, 'g'),
 (23, 'Olive oil', 1000, 250, 300, 'ml'),
 (24, 'Dry sherry', 500, 250, 300, 'g'),
-(25, 'Hot sauce', 245, 250, 300, 'g'),
+(25, 'Hot sauce', 266, 250, 300, 'g'),
 (26, 'Oregano', 350, 250, 300, 'g'),
 (27, 'Bay leaves', 100, 250, 300, 'g'),
 (28, 'Honey ', 1000, 250, 300, 'ml'),
 (29, 'Avocado', 500, 250, 300, 'g'),
 (30, 'Lime', 500, 250, 300, 'ml'),
-(32, ' Cauliflower ', 20, 1, 1, 'kg');
+(32, ' Cauliflower ', 20, 250, 300, 'g');
 
 -- --------------------------------------------------------
 
@@ -125,6 +145,10 @@ CREATE TABLE `meal_category` (
   `id` int(11) NOT NULL,
   `meal_category` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `meal_category`:
+--
 
 --
 -- Dumping data for table `meal_category`
@@ -146,14 +170,20 @@ INSERT INTO `meal_category` (`id`, `meal_category`) VALUES
 DROP TABLE IF EXISTS `meal_course`;
 CREATE TABLE `meal_course` (
   `id` int(11) NOT NULL,
-  `course_name` varchar(50) NOT NULL,
-  `prep_date` date NOT NULL DEFAULT '0000-00-00',
-  `course_type` tinyint(4) NOT NULL,
-  `time_to_prepare` int(11) DEFAULT NULL,
-  `course_notes` text NOT NULL,
-  `course_instructions` text NOT NULL,
+  `meal_type` tinyint(4) NOT NULL,
   `meal_cat_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `meal_course`:
+--
+
+--
+-- Dumping data for table `meal_course`
+--
+
+INSERT INTO `meal_course` (`id`, `meal_type`, `meal_cat_id`) VALUES
+(42, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -166,6 +196,10 @@ CREATE TABLE `meal_type` (
   `id` int(11) NOT NULL,
   `meal_type` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `meal_type`:
+--
 
 --
 -- Dumping data for table `meal_type`
@@ -196,6 +230,10 @@ CREATE TABLE `nutrition` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- RELATIONSHIPS FOR TABLE `nutrition`:
+--
+
+--
 -- Dumping data for table `nutrition`
 --
 
@@ -221,6 +259,10 @@ CREATE TABLE `orders` (
   `order_status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONSHIPS FOR TABLE `orders`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -235,6 +277,10 @@ CREATE TABLE `order_details` (
   `cust_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONSHIPS FOR TABLE `order_details`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -248,6 +294,20 @@ CREATE TABLE `recipes` (
   `cours_id` int(11) NOT NULL,
   `qty_used` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `recipes`:
+--
+
+--
+-- Dumping data for table `recipes`
+--
+
+INSERT INTO `recipes` (`id`, `item_id`, `cours_id`, `qty_used`) VALUES
+(226, 15, 1, 101),
+(225, 7, 1, 250),
+(224, 6, 1, 250),
+(223, 9, 1, 500);
 
 -- --------------------------------------------------------
 
@@ -266,6 +326,10 @@ CREATE TABLE `review_rating` (
   `date` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- RELATIONSHIPS FOR TABLE `review_rating`:
+--
+
 -- --------------------------------------------------------
 
 --
@@ -280,6 +344,10 @@ CREATE TABLE `servings` (
   `ord_id` int(11) NOT NULL,
   `no_of_servings` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- RELATIONSHIPS FOR TABLE `servings`:
+--
 
 -- --------------------------------------------------------
 
@@ -299,6 +367,10 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
+-- RELATIONSHIPS FOR TABLE `users`:
+--
+
+--
 -- Dumping data for table `users`
 --
 
@@ -311,10 +383,10 @@ INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `hashed_password`, `
 --
 
 --
--- Indexes for table `contents`
+-- Indexes for table `course_details`
 --
-ALTER TABLE `contents`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `course_details`
+  ADD UNIQUE KEY `course_id` (`course_id`);
 
 --
 -- Indexes for table `designation`
@@ -394,12 +466,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `contents`
---
-ALTER TABLE `contents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
@@ -421,7 +487,7 @@ ALTER TABLE `meal_category`
 -- AUTO_INCREMENT for table `meal_course`
 --
 ALTER TABLE `meal_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `meal_type`
@@ -451,7 +517,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
 -- AUTO_INCREMENT for table `review_rating`
@@ -469,7 +535,7 @@ ALTER TABLE `servings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

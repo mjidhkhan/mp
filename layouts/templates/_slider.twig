@@ -11,10 +11,10 @@
     <div class="carousel-inner">
  
       <div class="item active carousel-item ">
-         <img  class="slider-image" src="{{ path~products[0].image }}">
+         <img  class="slider-image" src="{{ path~products[0].course_image }}">
          <div class="carousel-caption text-right page-font">
               <h1>{{ products[0].course_name }}</h1>
-               <h3> {% autoescape %}{{products[0].description |raw}}{% endautoescape %}</h3>
+               <h3> {% autoescape %}{{products[0].course_description |raw}}{% endautoescape %}</h3>
 
               <p><a class="btn btn-lg btn-warning" href="#" role="button">Browse gallery</a></p>
             </div>
@@ -22,21 +22,21 @@
       </div>
 
       <div class="item carousel-item ">
-         <img  class="slider-image" src="{{ path ~ products[1].image }}">
+         <img  class="slider-image" src="{{ path ~ products[1].course_image }}">
          <div class="carousel-caption page-font">
-              <h1>{{ products[2].course_name }}</h1>
-               <h3> {% autoescape %}{{products[1].description |raw}}{% endautoescape %}</h3>
+              <h1>{{ products[1].course_name }}</h1>
+               <h3> {% autoescape %}{{products[1].course_description |raw}}{% endautoescape %}</h3>
               <p><a class="btn btn-lg btn-warning" href="#" role="button">Learn more</a></p>
             </div>
         
       </div>
     
       <div class="item carousel-item ">
-        <img  class="slider-image" src="{{ path~products[2].image }}"> 
+        <img  class="slider-image" src="{{ path~products[2].course_image }}"> 
         <div class="container">
             <div class="carousel-caption text-left page-font">
               <h1>{{ products[2].course_name }}</h1>
-              <h3> {% autoescape %}{{products[2].description |raw}}{% endautoescape %}</h3>
+              <h3> {% autoescape %}{{products[2].course_description |raw}}{% endautoescape %}</h3>
               
               <p><a class="btn btn-lg btn-warning" href="#" role="button">Sign up today</a></p>
               

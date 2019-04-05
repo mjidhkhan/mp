@@ -1,6 +1,6 @@
 {% extends '_layout.twig' %}
 {% block slider %}
-    <div class="container page-font" style="padding-right: 0px; padding-left: 0px">{% include '_slider.twig' %}</div>
+    <div class="container page-font" style="padding-right: 0px; padding-left: 0px; width:100%">{% include '_slider.twig' %}</div>
 {% endblock %}
 {% block title %}
 	<section class="text-center">
@@ -17,12 +17,12 @@
                 <div class="row featurette m-top">
 				<div class="col-md-12 ">
                         <div class="col-md-12 img-top img-bottom">
-                            <img  class="img" src="{{ path~item.image }}"> 
+                            <img  class="img" src="{{ path~item.course_image }}"> 
                         </div>
                     </div>
                   <div class="col-md-12">
-                    <div class="col-md-12  text-center"> <h3 class="products"><a type="text" class="underlined" href="?ID={{ item.id}}">{{ item.course_name }}</a></h3></div>
-                    <div class="col-md-12 text-center"><p class="message ">{% autoescape %}{{ item.description |raw}}{% endautoescape %}</p></div>
+                    <div class="col-md-12  text-center"> <h3 class="products"><a type="text" class="underlined" href="?ID={{ item.course_id}}">{{ item.course_name }}</a></h3></div>
+                    <div class="col-md-12 text-center"><p class="message ">{% autoescape %}{{ item.course_description |raw}}{% endautoescape %}</p></div>
                  </div>
                 </div><!-- /.container -->
 				  <br>
