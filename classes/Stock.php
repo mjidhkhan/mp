@@ -35,7 +35,7 @@ class Stock extends Model
 
     public function checkLowStock()
     {
-        $this->sql = $this->db->prepare('SELECT * FROM `ingredients` WHERE quantity BETWEEN reorder_level AND notice_level');
+        $this->sql = $this->db->prepare('SELECT * FROM `ingredients` WHERE quantity <= notice_level AND quantity >reorder_level');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {
@@ -47,7 +47,7 @@ class Stock extends Model
 
     public function checkOutOfStock()
     {
-        $this->sql = $this->db->prepare('SELECT * FROM `ingredients` WHERE quantity < reorder_level');
+        $this->sql = $this->db->prepare('SELECT * FROM `ingredients` WHERE quantity BETWEEN 0 AND reorder_level');
         $this->sql->execute();
         $count = $this->sql->rowCount();
         if ($count > 0) {

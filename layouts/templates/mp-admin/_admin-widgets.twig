@@ -10,8 +10,9 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3> {{nextweek|number_format(0,',')}}</h3>
-
               <h4>NEXT WEEK'S ORDERS</h4>
+               <p>Next Seven days</p>
+               
             </div>
             <div class="icon">
               <i class="ion ion-plus"></i>
@@ -25,8 +26,9 @@
           <div class="small-box bg-green">
             <div class="inner">
               <h3> {{today|number_format(0,',')}}<!--sup style="font-size: 20px">%</sup --></h3>
-
-              <p>TODAY'S ORDERS</p>
+              <h4>TODAY'S ORDERS</h4>
+               <p> Orders for today </P>
+               
             </div>
             <div class="icon">
               <i class="ion ion-clock"></i>
@@ -40,8 +42,9 @@
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>{{lowstock|number_format(0,',')}}</h3>
-
-              <p>LOW STOCK ITEMS</p>
+              <h4>LOW STOCK ITEMS</h4>
+               <p> Stock below Notice Level</P>
+               <p></p>
             </div>
             <div class="icon">
               <i class="ion ion-code-download"></i>
@@ -57,6 +60,8 @@
               <h3>{{outofstock|number_format(0,',')}}</h3>
 
               <h4>OUT OF STOCK</h4>
+              <p> Stock below Reorder Level</P>
+               
             </div>
             <div class="icon">
               <i class="ion ion-code"></i>
