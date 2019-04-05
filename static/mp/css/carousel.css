@@ -24,7 +24,7 @@ html {
 }
 
 .carousel {
-    margin-top: 4px;
+    margin-top: 0px;
     margin-bottom: 0rem;
     background: url('../images/slider/products.jpg');
     background-size: 100%;
