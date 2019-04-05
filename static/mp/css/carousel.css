@@ -50,7 +50,7 @@ html {
 
 .carousel-item {
     padding: 20px;
-    height: 50rem;
+    height: 38rem;
 }
 
 .carousel-item>img {
@@ -58,7 +58,7 @@ html {
     top: 0;
     left: 0;
     min-width: 38rem;
-    height: 38rem;
+    height: 100%;
 }
 
 .carousel-inner>.item>a>img,

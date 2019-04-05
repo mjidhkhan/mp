@@ -10,7 +10,8 @@ if (isset($_POST)) {
         $targetPath = '../../static/mp/images/'.$fileName;
         $fileType = $_FILES['file']['type'];
         $recipe->fileUpload($fileName, $sourcePath, $targetPath, $fileType);
-        $recipe->createNewRecipe($data, $fileName);
+        $response  = $recipe->createNewRecipe($data, $fileName);
+        echo $response;
     } else {
         echo 'ERROR';
     }

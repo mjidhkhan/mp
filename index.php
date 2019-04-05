@@ -14,4 +14,4 @@ if ($f[0] == '/') {
 
 $product = new Products();
 
-echo $twig->render('index.twig', array('products' => $product->getAllMeals(), 'page' => 'Our Products', 'login'=>'Login', 'path' => IMAGES));
+echo $twig->render('index.twig', array('products' => $product->getAllMeals(), 'page' => 'Our Recpies', 'login'=>'Login', 'path' => IMAGES));

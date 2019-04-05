@@ -25,6 +25,8 @@
             <!-- form start -->
             <form role="form" id="add_newitem">
               <div class="box-body">
+               <fieldset class=" col-md-12 scheduler-border">
+                  <legend class="scheduler-border">Add Item Details</legend>
                 <div class="form-group">
                   <label for="item-name">Item Name</label>
                   <input type="text" class="form-control" id="item-name"  name="item-name" placeholder="Enter item name" required>
@@ -46,6 +48,7 @@
                   <input type="text"  class="form-control" id="item-unit" name="item-unit" placeholder="Item unit" required>
                 </div>
                  <input type="hidden" hidden class="form-control"  name="action" value="NEW_ITEM">
+                 </fieldset>
               </div>
               <!-- /.box-body -->
 

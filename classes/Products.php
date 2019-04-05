@@ -12,7 +12,7 @@ class Products extends Model
 
     public function getAllMeals()
     {
-        $this->sql = $this->db->prepare('SELECT DISTINCT course_name, course_notes, course_instructions, description,image 
+        $this->sql = $this->db->prepare('SELECT DISTINCT course_name, course_notes, course_instructions,contents.id, description,image 
 FROM meal_course, contents WHERE meal_course.course_name = contents.title ');
         $this->sql->execute();
         $count = $this->sql->rowCount();

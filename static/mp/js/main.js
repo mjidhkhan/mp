@@ -175,15 +175,19 @@ $("#rcpForm").on('submit', function(e) {
             $('#fupForm').css("opacity", ".5");
         },
         success: function(msg) {
-            $('.statusMsg').html('');
-            if (msg == 'ok') {
-                $('#fupForm')[0].reset();
-                $('.statusMsg').html('<span style="font-size:18px;color:#34A853">Form data submitted successfully.</span>');
-            } else {
-                $('.statusMsg').html('<span style="font-size:18px;color:#EA4335">Some problem occurred, please try again.</span>');
-            }
-            $('#fupForm').css("opacity", "");
-            $(".submitBtn").removeAttr("disabled");
+            var item = $('#rcpname').val();
+            Swal.fire({
+                title: item,
+                text: "Recipe Created successfully!",
+                type: 'success',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    $('form').get(0).reset()
+                }
+            })
         }
     });
 });
