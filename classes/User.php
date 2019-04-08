@@ -128,7 +128,7 @@ class User extends Model
         if(array_key_exists('designation', $data)){
             $status =trim($data['designation']);
         }else{
-            $status = 3;
+            $status = 9; // 9 is for Client
         }
        
         if ($username && $fullname && $password && $repeatpassword && $email) {
