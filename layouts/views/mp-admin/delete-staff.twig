@@ -28,29 +28,41 @@
                 <thead>
                 <tr>
                 
-                  <th>Item Name</th>
-                  <th>Quantity</th>
-                  <th>Reorder Level</th>
-                  <th>Notice Level</th>
-                  <th>Units</th>
+                  <th>Photo</th>
+                  <th>Full Name</th>
+                  <th>Designation</th>
+                 
                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 
-               
-                 {% for item in stock %}
+                {% if employees|length > 0 %}
+
+                {% for employee in employees %}
+
+                        {% if employee.status == 1 %}
+                            {% set designation = 'Admin' %}
+                        {% elseif  employee.status == 2  %}
+                            {% set designation = 'Manager' %}
+                        {% elseif  employee.status == 3  %}
+                            {% set designation = 'Supervisor' %}
+                        {% elseif  employee.status >3 and    employee.status <9   %}
+                            {% set designation = 'Staff' %}
+                        {% endif %}
                  <tr>
-                 
-                  <td class="dmp-item">{{item.ingredient_name}}</td>
-                  <td class="dmp-item">{{item.quantity}}</td>
-                  <td class="dmp-item">{{item.reorder_level}}</td>
-                  <td class="dmp-item">{{item.notice_level}}</td>
-                  <td class="dmp-item">{{item.units}}</td>
+                  <td class="dmp-item"><img src="{{path}}user/{{employee.image}}"  alt="{{employee.fullname}}"   class="img-circle list-image" style="width:10%; height:10%"></td>
+                  <td class="dmp-item">{{employee.fullname}}</td>
+                  <td class="dmp-item">{{designation}}</td>
                   <td>
-                  <!--button type="button" class="btn  btn-small btn-primary" onclick="updateStock( {{item.id}})"><i class="fa fa-edit"></i></button -->
-                  <button type="button" class="btn  btn-small btn-danger" onclick="deleteStock(`{{item.ingredient_name}}`, {{item.id}})"><i class="fa fa-trash"></i></button>
-                  
+                    {% if employee.status == 1 %}
+                    <button type="button" class="btn  btn-small btn-danger"  disabled="disabled"><i class="fa fa-trash"></i></button>
+                    {% elseif employee.status == session.status and session.fullname == employee.fullname %}
+                    <button type="button" class="btn  btn-small btn-danger"  disabled="disabled"><i class="fa fa-trash"></i></button>
+                    {% else %}
+                     <button type="button" class="btn  btn-small btn-danger" onclick="deleteEmployee(`{{employee.fullname}}`, {{employee.id}},  {{employee.status}})"><i class="fa fa-trash"></i></button>
+                    {% endif %}
+                   
                   </td>
                  </tr>
                 {% endfor %}
@@ -72,9 +84,16 @@
                     
                 </div>
                 <!-- /.box-body -->
+                 {% else %}
+          <div class="callout callout-primary alert alert-primary">
+                <h4> Employees</h4>
+
+                <h5>Employee's data not found</h5>
+            </div>
+          {% endif %} 
 
                 <div class="box-footer">
-                    <h4>MP Stock</h4>
+                    <h4>Menu Planning Employees</h4>
                 </div>
            
             </div>

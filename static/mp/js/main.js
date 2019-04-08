@@ -421,3 +421,52 @@ $("#staffForm").on('submit', function(e) {
     });
     return false;
 });
+
+
+function deleteEmployee(name, id, status) {
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success spacer-right',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false,
+    })
+
+    swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't to delete " + name + " .",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                type: 'POST',
+                url: 'admin-functions.php',
+                data: { action: 'DELETE_STAFF', id: id, status: status },
+                success: function(msg) {
+                    if (msg == true) {
+                        $('#' + id).hide();
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                },
+            })
+        } else if (
+            // Read more about handling dismissals
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'You have canceled the process.',
+                'error'
+            )
+        }
+    })
+}

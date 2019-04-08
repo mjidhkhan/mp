@@ -150,5 +150,16 @@ class Staff extends Model
 
         return $this->result;
     }
+
+    public function deleteStaffMember($data){
+        $this->sql = $this->db->prepare('DELETE  FROM users WHERE id=:id');
+        $this->sql->execute(array(':id'=>$data['id']));
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+
+        return $this->result;
+    }
    
 }

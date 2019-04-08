@@ -90,9 +90,41 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Staff Members</h3>
+                    <h2 class="box-title">Menu Planning Staff</h2>
                 </div>
                 <div class="box-body">
+                {% if employees|length > 0 %}
+
+                {% for employee in employees %}
+
+                        {% if employee.status == 1 %}
+                            {% set designation = 'Admin' %}
+                        {% elseif  employee.status == 2  %}
+                            {% set designation = 'Manager' %}
+                        {% elseif  employee.status == 3  %}
+                            {% set designation = 'Supervisor' %}
+                        {% elseif  employee.status >3 and    employee.status <9   %}
+                            {% set designation = 'Staff' %}
+                        {% endif %}
+
+                <div class="list-group">
+                    <span class="list-group-item alert">
+                     <span><img src="{{path}}user/{{employee.image}}"  alt="{{employee.fullname}}"   class="img-circle list-image" style="width:10%; height:10%"></span>
+                        <h3 class="list-group-item-heading">{{employee.fullname}}</h3>
+                        <h4 class="list-group-item-text">{{designation}}</h4>
+                    </span>
+                    </div>
+                   {% endfor %}
+                  
+          
+          <!-- /.box -->
+          {% else %}
+          <div class="callout callout-primary alert alert-info">
+                <h4>  Out Of Stock Items</h4>
+
+                <h5>All Stock is up to required level level</h5>
+            </div>
+          {% endif %}
                     <div class="box-footer">
                         <h4>Staff area </h4>
                     </div>

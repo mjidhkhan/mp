@@ -22,6 +22,9 @@ if(isset($_POST['action'])){
 		case "NEW_STAFF":
 				newStaffMember($data);
 			break;
+		case "DELETE_STAFF":
+				deleteStaffMember($data);
+			break;
 	}
 }else{
 
@@ -60,7 +63,7 @@ function processUpdateStockItems($data){
 
 function newStaffMember($data){
 	$user = new User();
-print_r($data);
+
 	if (Session::get('status') == 1 ) {
 		if (!empty($_FILES['file']['type'])) {
 			$fileName = time().'_'.$_FILES['file']['name'];
@@ -73,8 +76,23 @@ print_r($data);
 	}else{
 		echo false;
 	}
-	
+}
 
+function deleteStaffMember($data){
+	
+	
+	if(Session::get('status') == $data['status'] ){
+		echo 'ME'; // cant delete yourself
+	}elseif ($data['status'] ==1){
+		echo 'AD'; // Admin cannot be deleted
+	}else{
+		$staff = new Staff();
+		if($staff->deleteStaffMember($data)> 0){
+			echo 'DN'; // delete done
+		}else{
+			echo 'NP'; // not possible
+		}
+	}
 }
 
 

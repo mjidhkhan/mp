@@ -1,9 +1,9 @@
 <?php
 require_once dirname(__DIR__).'../../pages/views.php';
 
-$stock = new Stock();
+$staff = new Staff();
 	if (Session::get('status') == 1 || Session::get('status') == 2 ) {
-        $data = $stock->getStock();   
+        $employees = $staff->getAllEmployees();   
 	}
 
-echo $twig->render('mp-admin/delete-staff.twig', array('stock' => 'Stock', 'page' => 'Delete Item', 'stock'=>$data));
+echo $twig->render('mp-admin/delete-staff.twig', array('staff' => 'Employees', 'page' => 'Delete Staff Member', 'employees'=>$employees,'path' => IMAGES));

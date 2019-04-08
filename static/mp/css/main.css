@@ -401,13 +401,13 @@
             
             .card {
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-                max-width: 300px;
+                max-width: auto;
                 margin: auto;
                 text-align: center;
                 font-family: arial;
             }
             
-            .title {
+            .designation {
                 color: grey;
                 font-size: 18px;
             }
@@ -424,7 +424,20 @@
                 color: white;
                 background-color: #000;
                 text-align: center;
-                cursor: pointer;
                 width: 100%;
                 font-size: 18px;
+            }
+            
+            .card-top {
+                padding-top: 20px;
+            }
+            
+            .card-image {
+                padding: 20px;
+                background: rgba(0, 0, 0, 0.11);
+            }
+            
+            .list-image {
+                padding: 10px;
+                background: rgba(0, 0, 0, 0.11);
             }
