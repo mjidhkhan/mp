@@ -27,21 +27,17 @@
                     <table id="stock-items" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                        
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Reorder Level</th>
-                        <th>Notice Level</th>
-                        <th>Units</th>
-                        <th>Action</th>
+                          <th>Item Name</th>
+                          <th>Quantity</th>
+                          <th>Reorder Level</th>
+                          <th>Notice Level</th>
+                          <th>Units</th>
+                          <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        
-                        
                         {% for item in stock %}
                         <tr id="item-{{item.id}}">
-                        
                         <td class="mp-item">{{item.ingredient_name}}</td>
                         <td class="mp-item">{{item.quantity}}</td>
                         <td class="mp-item">{{item.reorder_level}}</td>
@@ -54,18 +50,7 @@
                         </td>
                         </tr>
                         {% endfor %}
-                    
-                    
                         </tbody>
-                        <!--tfoot>
-                        <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Reorder Level</th>
-                        <th>Notice Level</th>
-                        <th>Units</th>
-                        </tr>
-                        </tfoot-->
                     </table>
           
           <!-- /.box -->

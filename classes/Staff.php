@@ -139,5 +139,16 @@ class Staff extends Model
             }
         }
     }
+
+    public function getAllEmployees(){
+        $this->sql = $this->db->prepare('SELECT * FROM users WHERE status !=9');
+        $this->sql->execute();
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+
+        return $this->result;
+    }
    
 }
