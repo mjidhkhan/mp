@@ -21,7 +21,7 @@
                         </div>
                     </div>
                   <div class="col-md-12">
-                    <div class="col-md-12  text-center"> <h3 class="products"><a type="text" class="underlined" href="?ID={{ item.course_id}}">{{ item.course_name }}</a></h3></div>
+                    <div class="col-md-12  text-center"> <h3 class="products"><span type="text" class="underlined" onclick="getDetails({{item.course_id}})">{{ item.course_name }}</span></h3></div>
                     <div class="col-md-12 text-center"><p class="message ">{% autoescape %}{{ item.course_description |raw}}{% endautoescape %}</p></div>
                  </div>
                 </div><!-- /.container -->

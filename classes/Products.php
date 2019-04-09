@@ -23,25 +23,14 @@ class Products extends Model
     }
 
     /** Vegetarian Meals Start */
-    public function getAllVegetarian()
-    {
-        $this->sql = $this->db->prepare('SELECT * FROM `contents` Where visible = 1 AND m_cat_id= 1');
-        $this->sql->execute();
-        $count = $this->sql->rowCount();
-        if ($count > 0) {
-            $this->result = $this->sql->fetchAll();
-        }
-
-        return $this->result;
-    }
+    
 
     public function getAllVegetarianStarters()
     {
         if (ID != '' || ID != null) {
             $this->sql = $this->db->prepare('SELECT * 
             FROM  meal_course,course_details   
-            WHERE meal_course.meal_type =1 
-            AND meal_course.meal_cat_id= 1');
+            WHERE course_details.course_id=:ID');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -69,9 +58,7 @@ class Products extends Model
         if (ID != '' || ID != null) {
             $this->sql = $this->db->prepare('SELECT * 
                 FROM  meal_course,course_details   
-                WHERE meal_course.meal_type = 1 
-                AND meal_course.meal_cat_id = 2 
-                AND meal_course.id =  :ID');
+                WHERE meal_course.id =  :ID');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -79,10 +66,11 @@ class Products extends Model
             }
         } else {
             $this->sql = $this->db->prepare('SELECT * 
-                FROM  meal_course,course_details   
+                FROM  meal_course  
+                INNER JOIN course_details 
+                ON meal_course.id = course_details.course_id 
                 WHERE meal_course.meal_type = 1 
-                AND meal_course.meal_cat_id = 2 
-                AND meal_course.id = course_details.course_id ');
+                AND meal_course.meal_cat_id = 2');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -117,9 +105,7 @@ class Products extends Model
         if (ID != '' || ID != null) {
             $this->sql = $this->db->prepare('SELECT * 
                 FROM  meal_course,course_details   
-                WHERE meal_course.meal_type = 1 
-                AND meal_course.meal_cat_id = 2 
-                AND meal_course.id = :ID ');
+                WHERE  course_details.id = :ID ');
             $this->sql->execute(array(':ID' => ID));
             $count = $this->sql->rowCount();
             if ($count > 0) {
@@ -127,10 +113,11 @@ class Products extends Model
             }
         } else {
             $this->sql = $this->db->prepare('SELECT * 
-                FROM  meal_course,course_details   
-                WHERE meal_course.meal_type = 1 
-                AND meal_course.meal_cat_id = 2 
-                AND meal_course.id = course_details.course_id ');
+            FROM  meal_course   
+            INNER JOIN course_details
+            ON meal_course.id = course_details.course_id
+            WHERE meal_course.meal_type = 2 
+            AND meal_course.meal_cat_id = 1');
             $this->sql->execute();
             $count = $this->sql->rowCount();
             if ($count > 0) {

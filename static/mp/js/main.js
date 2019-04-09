@@ -474,4 +474,20 @@ function deleteEmployee(name, id, status) {
 // Recipe Details //#endregion
 function getDetails(id) {
     console.log(name + ' ' + id);
+
+    $.ajax({
+        type: 'POST',
+        url: 'client-functions.php',
+        data: { action: 'SHOW_DETAILS', id: id },
+        success: function(msg) {
+            if (msg == true) {
+                $('#staff-' + id).hide();
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    name + ' has been deleted.',
+                    'success'
+                )
+            }
+        },
+    })
 }
