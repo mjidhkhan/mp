@@ -34,13 +34,12 @@ if(Session::get('status')< 9){
 }
 
 
+
 $id = explode('=', $_SERVER['REQUEST_URI']);
 if (array_key_exists('1', $id)) {
     if ($id[1] != '') {
         define('ID', $id[1]); 
        // require_once('client-function.php'); 
-
-        response(ID);
     }
 } else {
     define('ID', '');
@@ -56,16 +55,3 @@ if (sizeof($type)>=4){
     define('TYPE', 'N');
 }
 
-
-
-function response($id){
-    echo $id;
-    echo $twig->render('mp-admin/update-item.twig', array('stock' => 'Stock', 
-        'page' => 'Update Item',
-        'stock'=>$data, 
-        'admin_data' =>$details,
-        'stock_data'=>$stock_data,
-        'order_data'=>$order_data
-        ));
-
-}

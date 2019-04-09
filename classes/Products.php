@@ -215,4 +215,16 @@ class Products extends Model
 
         return $this->result;
     }
+
+    public function getProductDetails($id){
+        $this->sql = $this->db->prepare('SELECT * 
+        FROM  course_details   
+        WHERE course_id =  :ID');
+        $this->sql->execute(array(':ID' => $id['id']));
+        $count = $this->sql->rowCount();
+        if ($count > 0) {
+            $this->result = $this->sql->fetchAll();
+        }
+        return $this->result;
+    }
 }

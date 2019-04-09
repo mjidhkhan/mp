@@ -131,6 +131,8 @@ class Recipe extends Model
         // Update Stock
     }
 
+
+
   
 
     private function insertDataToMealCourse($data)
@@ -174,4 +176,9 @@ class Recipe extends Model
             return false;
         }
     }
+
+
+    // Recipe Details
+
+    
 }

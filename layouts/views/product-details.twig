@@ -1,0 +1,109 @@
+
+    <div class="col-lg-12">
+			<div class="col-lg-4">
+                <div class=" marketing0 page-font container-fluid">
+                    <div class="row featurette m-top">
+                        <div class="col-md-12 ">
+                                
+                        </div>
+                        <div class="col-md-12">
+                        <!--
+                            <div class="col-md-12  text-center"> <h3 class="products"><span type="text" class="underlined" onclick="getDetails({{item.course_id}})">{{ item.course_name }}</span></h3></div>
+                            <div class="col-md-12 text-center"><p class="message ">{% autoescape %}{{ item.course_description |raw}}{% endautoescape %}</p></div>
+
+                            -->
+                        </div>
+                    </div><!-- /.container -->
+                    <br>
+                    
+                </div>				
+			</div>
+            <div class="col-lg-8">
+                <div class=" marketing0 page-font container-fluid">
+                    <div class="row featurette m-top">
+                        <div class="col-md-12 ">
+                        </div>
+                        <div class="col-md-12">
+                        <!--
+                            <div class="col-md-12  text-center"> <h3 class="products"><span type="text" class="underlined" onclick="getDetails({{item.course_id}})">{{ item.course_name }}</span></h3></div>
+                            <div class="col-md-12 text-center"><p class="message ">{% autoescape %}{{ item.course_description |raw}}{% endautoescape %}</p></div>
+
+                            -->
+                        </div>
+                    </div><!-- /.container -->
+                    <br>
+                    
+                </div>				
+			</div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+          <div class="box box-danger">
+                <div class="box-header with-border">
+                <h3 class="box-title">{{product[0].course_name}}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-12 img-top img-bottom">
+                        <img  class="img" src="{{ path~product[0].course_image }}"> 
+                    </div>
+                </div> <!-- /.box-body -->
+            </div>
+        </div>
+
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">{{product[0].course_name}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+              <div class="box-body">
+              
+                  
+                  
+
+                  <div class="attachment-block clearfix">
+               
+
+                <div class="attachment-pushed">
+                  <h4 class="attachment-heading">{{product[0].course_name}}</h4>
+
+                  <div class="attachment-text">
+                   {% autoescape %}{{ product[0].course_description |raw}}{% endautoescape %}
+                  </div>
+                  <br>
+                  <br>
+                    <h4 class="attachment-heading">{{product[0].course_name}}</h4>
+                  <div class="attachment-text">
+                  {% autoescape %}{{ product[0].course_notes |raw}}{% endautoescape %}
+                  </div>
+                  <br>
+                  <br>
+                    <h4 class="attachment-heading">{{product[0].course_name}}</h4>
+                  <div class="attachment-text">
+                   {% autoescape %}{{ product[0].course_instructions |raw}}{% endautoescape %}
+                  </div>
+                  <!-- /.attachment-text -->
+                </div>
+                <!-- /.attachment-pushed -->
+              </div>
+               
+                
+              </div>
+              <!-- /.box-body -->
+
+             
+           
+        </div>
+        </div>
+          <!-- /.box -->
+        
+    </div>
+
+			
+	
