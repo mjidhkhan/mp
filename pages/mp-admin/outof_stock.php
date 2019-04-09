@@ -1,16 +1,11 @@
 <?php
 require_once dirname(__DIR__).'../../pages/views.php';
 
-$stock = new Stock();
+
 	if (Session::get('status') == 1 || Session::get('status') == 2 ) {
 
-		$outof_stock = $stock->checkOutOfStock();
-		$low_stock = $stock->checkLowStock();
-		$outof_stock = $stock->checkOutOfStock();
-		$outof_stock = $stock->checkOutOfStock();
-        	$data = $stock->getOutOfStock(); 
          
-	}
+	
 
 echo $twig->render('mp-admin/outofstock-items.twig', array('stock' => 'Stock', 
 								'page' => 'Out of Stock', 
@@ -19,4 +14,7 @@ echo $twig->render('mp-admin/outofstock-items.twig', array('stock' => 'Stock',
 								'today' => 20,
 								'nextweek' => 30, 
 								'path' => IMAGES,
-								'stock'=>$data,'admin_data' =>$details));
+								'stock'=>$data,'admin_data' =>$details, 
+								'stock_data'=>$stock_data,
+								'order_data'=>$order_data));
+	}

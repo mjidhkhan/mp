@@ -25,4 +25,7 @@ echo $twig->render('mp-admin/recipe.twig', array(
     'mealType' => $mealType,
     'mealCategory' => $mealCategory,
     'path' => IMAGES,
-    'admin_data' =>$details ));
+    'admin_data' =>$details,
+    'stock_data'=>$stock_data,
+    'order_data'=>$order_data
+ ));

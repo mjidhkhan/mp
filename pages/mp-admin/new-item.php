@@ -7,5 +7,10 @@ echo $twig->render('mp-admin/new-item.twig', array('login' => 'Login', 'page' =>
 
     }
 }else{
-    echo $twig->render('mp-admin/new-item.twig', array('login' => 'Login', 'page' => 'Add new Item','logedin-admin' =>$details));
+    echo $twig->render('mp-admin/new-item.twig', array('login' => 'Login', 
+    'page' => 'Add new Item',
+    'logedin-admin' =>$details, 
+    'stock_data'=>$stock_data,
+    'order_data'=>$order_data
+));
 }

@@ -6,4 +6,10 @@ $stock = new Stock();
         $data = $stock->getStock();   
 	}
 
-echo $twig->render('mp-admin/update-item.twig', array('stock' => 'Stock', 'page' => 'Update Item', 'stock'=>$data, 'admin_data' =>$details));
+echo $twig->render('mp-admin/update-item.twig', array('stock' => 'Stock', 
+'page' => 'Update Item',
+ 'stock'=>$data, 
+ 'admin_data' =>$details,
+ 'stock_data'=>$stock_data,
+ 'order_data'=>$order_data
+));

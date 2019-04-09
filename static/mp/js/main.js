@@ -470,3 +470,8 @@ function deleteEmployee(name, id, status) {
         }
     })
 }
+
+// Recipe Details //#endregion
+function getDetails(id) {
+    console.log(name + ' ' + id);
+}

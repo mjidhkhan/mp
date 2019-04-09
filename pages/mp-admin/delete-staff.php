@@ -9,6 +9,9 @@ $staff = new Staff();
 echo $twig->render('mp-admin/delete-staff.twig', array('staff' => 'Employees',
  'page' => 'Delete Staff Member',
   'employees'=>$employees,
-  'admin_data' =>$details));
+  'admin_data' =>$details,
+  'stock_data'=>$stock_data,
+  'order_data'=>$order_data
+));
 
 

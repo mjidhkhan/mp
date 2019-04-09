@@ -19,4 +19,7 @@ echo $twig->render('mp-admin/lowstock-items.twig', array('stock' => 'Stock',
 								'today' => 20,
 								'nextweek' => 30, 
 								'path' => IMAGES,
-								'stock'=>$data, 'admin_data' =>$details));
+								'stock'=>$data, 'admin_data' =>$details,
+								'stock_data'=>$stock_data,
+								'order_data'=>$order_data
+							));
