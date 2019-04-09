@@ -23,7 +23,7 @@
                 <!-- form start -->
            
                 <div class="box-body">
-                
+               
               <table id="stock-items" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -50,8 +50,8 @@
                         {% elseif  employee.status >3 and    employee.status <9   %}
                             {% set designation = 'Staff' %}
                         {% endif %}
-                 <tr>
-                  <td class="dmp-item"><img src="{{path}}user/{{employee.image}}"  alt="{{employee.fullname}}"   class="img-circle list-image" style="width:10%; height:10%"></td>
+                 <tr id="staff-{{employee.id}}">
+                  <td class="dmp-item"><img src="{{admin_data.path}}user/{{employee.image}}"  alt="{{employee.fullname}}"   class="img-circle list-image" style="width:10%; height:10%"></td>
                   <td class="dmp-item">{{employee.fullname}}</td>
                   <td class="dmp-item">{{designation}}</td>
                   <td>

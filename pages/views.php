@@ -1,6 +1,14 @@
 <?php
 require_once dirname(__DIR__) . "/config/config.php";
 
+if(Session::get('status')< 9){
+    $details = array('path' => IMAGES,
+    'fullname' => Session::get('fullname'),
+    'image'=>Session::get('user-image')
+    );
+}
+
+
 $id = explode('=', $_SERVER['REQUEST_URI']);
 if (array_key_exists('1', $id)) {
     if ($id[1] != '') {

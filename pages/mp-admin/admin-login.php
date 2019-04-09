@@ -23,16 +23,13 @@ if (isset($_POST['action'])) {
                 'message' => Session::flash(),
                 'type' => Session::flashType(),
                 'title' => 'Success..!', 
-                 'path' => IMAGES,
-                'fullname' => Session::get('fullname'),
-                'image'=>Session::get('user-image'),
-              
                 'outofstock' => sizeof($outof_stock),
                 'lowstock' => sizeof($low_stock),
                 'today' => 20,
-                'nextweek' => 30, 'path' => IMAGES,
+                'nextweek' => 30,
+                'path' => IMAGES,
                 'fullname' => Session::get('fullname'),
-            
+                'image'=>Session::get('user-image')
             ));
         }
     }

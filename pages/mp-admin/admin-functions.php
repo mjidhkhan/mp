@@ -79,20 +79,13 @@ function newStaffMember($data){
 }
 
 function deleteStaffMember($data){
-	
-	
-	if(Session::get('status') == $data['status'] ){
-		echo 'ME'; // cant delete yourself
-	}elseif ($data['status'] ==1){
-		echo 'AD'; // Admin cannot be deleted
-	}else{
 		$staff = new Staff();
 		if($staff->deleteStaffMember($data)> 0){
-			echo 'DN'; // delete done
+			echo true; // delete done
 		}else{
-			echo 'NP'; // not possible
+			echo false; // not possible
 		}
-	}
+	
 }
 
 

@@ -19,4 +19,4 @@ echo $twig->render('mp-admin/outofstock-items.twig', array('stock' => 'Stock',
 								'today' => 20,
 								'nextweek' => 30, 
 								'path' => IMAGES,
-								'stock'=>$data));
+								'stock'=>$data,'admin_data' =>$details));

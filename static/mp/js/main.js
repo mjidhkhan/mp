@@ -449,10 +449,10 @@ function deleteEmployee(name, id, status) {
                 data: { action: 'DELETE_STAFF', id: id, status: status },
                 success: function(msg) {
                     if (msg == true) {
-                        $('#' + id).hide();
+                        $('#staff-' + id).hide();
                         swalWithBootstrapButtons.fire(
                             'Deleted!',
-                            'Your file has been deleted.',
+                            name + ' has been deleted.',
                             'success'
                         )
                     }

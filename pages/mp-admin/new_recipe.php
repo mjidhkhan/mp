@@ -25,4 +25,4 @@ echo $twig->render('mp-admin/recipe.twig', array(
     'mealType' => $mealType,
     'mealCategory' => $mealCategory,
     'path' => IMAGES,
-    'fullname' => Session::get('fullname'), ));
+    'admin_data' =>$details ));

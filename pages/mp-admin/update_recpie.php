@@ -7,5 +7,5 @@ echo $twig->render('mp-admin/update-item.twig', array('login' => 'Login', 'page'
 
     }
 }else{
-    echo $twig->render('mp-admin/update-item.twig', array('login' => 'Login', 'page' => 'Update Item'));
+    echo $twig->render('mp-admin/update-item.twig', array('login' => 'Login', 'page' => 'Update Item', 'admin_data' =>$details));
 }

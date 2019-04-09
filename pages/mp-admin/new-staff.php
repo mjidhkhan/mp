@@ -6,7 +6,7 @@ $staff = new Staff();
         
 		   $designation = $staff->getDesignation(); 
 		   $employees = $staff->getAllEmployees();
-		echo $twig->render('mp-admin/new-staff.twig', array('staff' => 'Staff', 'page' => 'New Staff', 'types'=>$designation,'employees'=>$employees,'path' => IMAGES));
+		echo $twig->render('mp-admin/new-staff.twig', array('staff' => 'Staff', 'page' => 'New Staff', 'types'=>$designation,'employees'=>$employees,'path' => IMAGES, 'admin_data' =>$details));
 	}else{
 		echo $twig->render('mp-admin/admin-login.twig', array('page' => 'Admin Login'));
 	}
