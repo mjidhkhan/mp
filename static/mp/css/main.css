@@ -489,3 +489,7 @@
             .media-object {
                 display: block;
             }
+            
+            .attachment-text {
+                font-size: 1.1rem;
+            }

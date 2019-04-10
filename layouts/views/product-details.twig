@@ -3,7 +3,7 @@
             <div class="col-md-8">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{product[0].course_name}} (Instructions)</h3>
+                        <h2 class="box-title">{{product[0].course_name}}</h2>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -15,19 +15,19 @@
                             <div class="col-md-8 img-top img-bottom">
                                 <div class="attachment-pushed">
                                     <div class="col-md-12">
-                                        <h4 class="attachment-heading">Recipe Details</h4>
+                                        <h3 class="attachment-heading">Recipe Details</h3>
                                         <div class="attachment-text">
                                             {% autoescape %}{{ product[0].course_description |raw}}{% endautoescape %}
                                         </div><br>
                                     </div>
                                     <div class="col-md-12">
-                                        <h4 class="attachment-heading">Recipe Notes</h4>
+                                        <h3 class="attachment-heading">Recipe Notes</h3>
                                         <div class="attachment-text">
                                             {% autoescape %}{{ product[0].course_notes |raw}}{% endautoescape %}
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <h4 class="attachment-heading">Recipe Instructions</h4>
+                                        <h3 class="attachment-heading">Recipe Instructions</h3>
                                         <div class="attachment-text">
                                             {% autoescape %}{{ product[0].course_instructions |raw}}{% endautoescape %}
                                         </div>
