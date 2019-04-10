@@ -23,7 +23,7 @@
                 <!-- form start -->
            
                 <div class="box-body">
-                 {% if stock|length > 0 %}
+                 {% if outofstock|length > 0 %}
                     <table id="stock-items" class="table table-bordered table-striped">
                         <thead>
                         <tr>
@@ -39,7 +39,7 @@
                         <tbody>
                         
                         
-                        {% for item in stock %}
+                        {% for item in outofstock %}
                         <tr id="item-{{item.id}}">
                         
                         <td class="mp-item">{{item.ingredient_name}}</td>
