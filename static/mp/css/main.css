@@ -442,3 +442,50 @@
                 padding: 10px;
                 background: rgba(0, 0, 0, 0.11);
             }
+            
+            .detailed-image {
+                position: relative;
+                float: left;
+                width: 100%;
+                height: auto;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                padding: 10px;
+                vertical-align: middle;
+            }
+            
+            .media-middle {
+                vertical-align: middle;
+            }
+            
+            .media-body,
+            .media-left,
+            .media-right {
+                display: table-cell;
+                vertical-align: top;
+            }
+            
+            .media-left,
+            .media>.pull-left {
+                padding-right: 10px;
+            }
+            
+            .media,
+            .media-body {
+                overflow: hidden;
+                zoom: 1;
+            }
+            
+            .media {
+                margin-top: 15px;
+            }
+            
+            .element-size {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .media-object {
+                display: block;
+            }
