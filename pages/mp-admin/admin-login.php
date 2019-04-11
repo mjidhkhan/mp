@@ -22,14 +22,13 @@ if (isset($_POST['action'])) {
                 'subtitle' => 'Control panel',
                 'message' => Session::flash(),
                 'type' => Session::flashType(),
-                'title' => 'Success..!', 
-                'outofstock' => sizeof($outof_stock),
-                'lowstock' => sizeof($low_stock),
+                'stock_data'=>$stock_data,
+                'order_data'=>$order_data,
                 'today' => 20,
                 'nextweek' => 30,
                 'path' => IMAGES,
                 'fullname' => Session::get('fullname'),
-                'image'=>Session::get('user-image')
+                'admin_data' =>$details
             ));
         }
     }
